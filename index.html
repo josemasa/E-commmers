@@ -229,10 +229,9 @@
     }
 
     function vaciarCarrito() {
-      if (confirm("¿Estás seguro de vaciar el carrito?")) {
-        seleccionados = [];
-        actualizarResumen();
-      }
+      seleccionados = [];
+      actualizarResumen();
+    
     }
 
     function actualizarResumen() {
@@ -255,21 +254,32 @@
       });
     }
 
-    function enviarWhatsApp() {
-      if (seleccionados.length === 0) {
-        alert("No hay productos seleccionados.");
-        return;
-      }
+function enviarWhatsApp() {
+  if (seleccionados.length === 0) {
+    alert("No hay productos seleccionados.");
+    return;
+  }
 
-      const mensaje = seleccionados.map(p => `🛒 ${p.nombre} x${p.cantidad} - $${p.precio} c/u = $${p.precio * p.cantidad}`).join('\n');
-      const total = seleccionados.reduce((acc, p) => acc + (p.precio * p.cantidad), 0);
-      const finalMsg = `Hola! Quiero pedir:\n${mensaje}\n\n💰 Total: $${total}`;
-      const url = "https://wa.me/?text=" + encodeURIComponent(finalMsg);
+  let mensaje = "🛒 *Detalle del pedido:*\n";
+  mensaje += "Cant  Producto           Subtotal\n";
+  mensaje += "----------------------------------\n";
 
-      if (confirm("¿Enviar este pedido por WhatsApp?")) {
-        window.open(url, "_blank");
-      }
-    }
+  seleccionados.forEach(p => {
+    const cantidad = p.cantidad.toString().padEnd(4, ' ');
+    const nombre = p.nombre.padEnd(18, ' ');
+    const subtotal = (p.precio * p.cantidad).toString().padStart(6, ' ');
+    mensaje += `${cantidad} ${nombre} $${subtotal}\n`;
+  });
+
+  const total = seleccionados.reduce((acc, p) => acc + (p.precio * p.cantidad), 0);
+  mensaje += "----------------------------------\n";
+  mensaje += `💰 Total: $${total}`;
+
+  const phoneNumber = "543816163841"; // código país + número sin 0 ni +
+  const url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(mensaje);
+
+  window.open(url, "_blank");
+}
 
     function filtrarProductos() {
       const texto = document.getElementById('buscador').value.toLowerCase();
