@@ -32,9 +32,46 @@
     background: white; padding: 20px; border-radius: 10px; width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto;
   }
   .modal-contenido h2 { text-align: center; }
-  ul { list-style: none; padding: 0; }
-  li { padding: 5px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
-  .acciones button { padding: 5px; margin-left: 3px; }
+  ul { list-style: none; padding: 0; margin: 0; }
+  /* Estilo para items carrito */
+  #lista-carrito li {
+    background: #fefefe;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 8px;
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: 6px;
+  }
+  #lista-carrito li .fila-uno {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+  }
+  #lista-carrito li .fila-dos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  #lista-carrito li .fila-dos button {
+    padding: 4px 8px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: white;
+  }
+  #lista-carrito li .fila-dos button:hover {
+    background: #eee;
+  }
+  .acciones {
+    display: flex;
+    gap: 6px;
+  }
   .btn { padding: 10px; margin: 5px; border: none; border-radius: 5px; cursor: pointer; }
   .whatsapp { background-color: #25D366; color: white; }
   .vaciar { background-color: #d9534f; color: white; }
@@ -64,7 +101,6 @@
       grid-row: 1;
     }
 
-    /* Contenedor para agrupar segunda fila */
     .producto .fila-dos {
       grid-row: 2;
       display: flex;
@@ -180,6 +216,34 @@ function mostrarProductos(lista) {
   });
 }
 
+function actualizarResumen() {
+  const lista = document.getElementById('lista-carrito');
+  lista.innerHTML = '';
+  let total = 0;
+  seleccionados.forEach((p, i) => {
+    const subtotal = p.precio * p.cantidad;
+    total += subtotal;
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <div class="fila-uno">
+        <span>${p.nombre}</span>
+        <span>💵 $${p.precio}</span>
+      </div>
+      <div class="fila-dos">
+        <span>Subtotal: $${subtotal}</span>
+        <div class="acciones">
+          <button onclick="editarCantidad(${i}, -1)">-</button>
+          <button onclick="editarCantidad(${i}, 1)">+</button>
+          <button onclick="eliminarProducto(${i})">❌</button>
+        </div>
+        <span>Cant: ${p.cantidad}</span>
+      </div>
+    `;
+    lista.appendChild(li);
+  });
+  document.getElementById('total').textContent = total;
+}
+
 function cambiarCantidad(id, delta) {
   const input = document.getElementById(id);
   let valor = parseInt(input.value) || 1;
@@ -196,27 +260,6 @@ function agregarAlPedido(nombre, precio, inputID) {
     seleccionados.push({ nombre, precio, cantidad });
   }
   actualizarResumen();
-}
-
-function actualizarResumen() {
-  const lista = document.getElementById('lista-carrito');
-  lista.innerHTML = '';
-  let total = 0;
-  seleccionados.forEach((p, i) => {
-    const subtotal = p.precio * p.cantidad;
-    total += subtotal;
-    const li = document.createElement('li');
-    li.innerHTML = `
-      ${p.nombre} - $${p.precio} x ${p.cantidad} = $${subtotal}
-      <span class="acciones">
-        <button onclick="editarCantidad(${i}, -1)">-</button>
-        <button onclick="editarCantidad(${i}, 1)">+</button>
-        <button onclick="eliminarProducto(${i})">❌</button>
-      </span>
-    `;
-    lista.appendChild(li);
-  });
-  document.getElementById('total').textContent = total;
 }
 
 function editarCantidad(index, delta) {
