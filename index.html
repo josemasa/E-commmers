@@ -11,7 +11,7 @@
   select, input[type="text"] { padding: 8px; margin: 5px; }
   #productos { display: flex; flex-wrap: wrap; justify-content: center; }
   .producto {
-    background: white; border: 1px solid #ddd; border-radius: 10px; padding: 10px; margin: 10px;
+    background: white; border: 1px solid #ddd; border-radius: 5px; padding: 2px; margin: 2px;
     width: 220px; text-align: center; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
   }
   .cantidad { display: flex; justify-content: center; align-items: center; margin-top: 5px; }
@@ -39,6 +39,52 @@
   .whatsapp { background-color: #25D366; color: white; }
   .vaciar { background-color: #d9534f; color: white; }
   .seguir { background-color: #007bff; color: white; }
+
+  /* ----- Vista tipo lista para celular ----- */
+@media (max-width: 600px) {
+  #productos {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .producto {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: none;
+    padding: 8px;
+    margin: 4px 0;
+    text-align: left;
+  }
+
+  .producto h3 {
+    font-size: 16px;
+    margin: 0;
+    flex: 1;
+  }
+
+  .producto p {
+    margin: 0 8px;
+    white-space: nowrap;
+  }
+
+  .cantidad {
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+  }
+
+  .cantidad input {
+    width: 40px;
+  }
+
+  button.agregar {
+    font-size: 14px;
+    padding: 5px 8px;
+    margin-left: 5px;
+  }
+}
 </style>
 </head>
 <body>
