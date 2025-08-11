@@ -1,138 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tienda Online</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background: #f8f8f8;
-  }
-  .producto {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px;
-    background: #fff;
-  }
-  .producto h3 {
-    margin: 0 0 5px 0;
-  }
-  button {
-    padding: 5px 10px;
-    margin-top: 5px;
-    cursor: pointer;
-  }
-  #carrito-info {
-    border: 2px solid #000;
-    background: #fff;
-    padding: 10px;
-    position: fixed;
-    right: 20px;
-    top: 80px;
-    width: 250px;
-  }
-  #boton-carrito {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #25d366;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    font-size: 24px;
-    padding: 15px;
-    cursor: pointer;
-  }
-  @media (max-width: 768px) {
-    #carrito-info {
-      display: none;
-    }
-    #carrito-info.mostrar {
-      display: block;
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      width: 90%;
-    }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tienda Online - Productos</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header>
+    <h1>🛍️ Lista de Productos</h1>
+    <select id="categoryFilter"></select>
+    <button onclick="window.location='carrito.html'">Ver Carrito 🛒</button>
+  </header>
 
-<h1>Tienda Online</h1>
+  <div class="container" id="productList"></div>
 
-<div class="producto">
-  <h3>Producto 1</h3>
-  <p>Precio: $100</p>
-  <input type="number" min="1" value="1" id="cantidad1">
-  <button onclick="agregarAlCarrito('Producto 1', 100, document.getElementById('cantidad1').value)">Agregar</button>
-</div>
-
-<div class="producto">
-  <h3>Producto 2</h3>
-  <p>Precio: $200</p>
-  <input type="number" min="1" value="1" id="cantidad2">
-  <button onclick="agregarAlCarrito('Producto 2', 200, document.getElementById('cantidad2').value)">Agregar</button>
-</div>
-
-<div id="carrito-info">
-  <h2>Carrito</h2>
-  <ul id="lista-carrito"></ul>
-  <p id="total"></p>
-  <button onclick="enviarPedido()">Enviar por WhatsApp</button>
-</div>
-
-<button id="boton-carrito" onclick="toggleCarrito()">🛒</button>
-
-<script>
-let carrito = [];
-
-function agregarAlCarrito(nombre, precio, cantidad) {
-  cantidad = parseInt(cantidad);
-  let existente = carrito.find(p => p.nombre === nombre);
-  if (existente) {
-    existente.cantidad += cantidad;
-  } else {
-    carrito.push({ nombre, precio, cantidad });
-  }
-  mostrarCarrito();
-}
-
-function mostrarCarrito() {
-  let lista = document.getElementById('lista-carrito');
-  lista.innerHTML = '';
-  let total = 0;
-  carrito.forEach(prod => {
-    let li = document.createElement('li');
-    li.textContent = `${prod.nombre} x${prod.cantidad} - $${prod.precio * prod.cantidad}`;
-    lista.appendChild(li);
-    total += prod.precio * prod.cantidad;
-  });
-  document.getElementById('total').textContent = 'Total: $' + total;
-}
-
-function enviarPedido() {
-  if (carrito.length === 0) {
-    alert("El carrito está vacío");
-    return;
-  }
-  let mensaje = "🛒 Pedido:\n";
-  carrito.forEach(prod => {
-    mensaje += `${prod.nombre} x${prod.cantidad} - $${prod.precio * prod.cantidad}\n`;
-  });
-  let total = carrito.reduce((sum, p) => sum + p.precio * p.cantidad, 0);
-  mensaje += `\nTotal: $${total}`;
-  
-  let url = "https://wa.me/543816163841?text=" + encodeURIComponent(mensaje);
-  window.open(url, "_blank");
-}
-
-function toggleCarrito() {
-  document.getElementById('carrito-info').classList.toggle('mostrar');
-}
-</script>
-
+  <script src="script.js"></script>
+  <script>
+    loadProducts();
+  </script>
 </body>
 </html>
