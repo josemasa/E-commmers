@@ -4,14 +4,16 @@
 <meta charset="UTF-8">
 <title>Tienda Online</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-  body { font-family: Arial, sans-serif; background: #f8f8f8; margin: 0; padding: 20px; }
+  body { font-family: Arial, sans-serif; background: #9fd5ee; margin: 0; padding: 12px; }
   h1 { text-align: center; }
+  h3 { text-align: center; }
   #filtros { margin-bottom: 15px; text-align: center; }
   select, input[type="text"] { padding: 8px; margin: 5px; }
   #productos { display: flex; flex-wrap: wrap; justify-content: center; }
   .producto {
-    background: white; border: 1px solid #ddd; border-radius: 5px; padding: 2px; margin: 2px;
+    background: rgb(186, 235, 241); border: 1px solid #ddd; border-radius: 5px; padding: 2px; margin: 2px;
     width: 220px; text-align: center; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
   }
   .cantidad { display: flex; justify-content: center; align-items: center; margin-top: 5px; }
@@ -132,7 +134,7 @@
 <body>
 
 <h1>🛍️ Tienda Online</h1>
-
+<h3>solo productos con stock</h3>
 <div id="filtros">
   <input type="text" id="buscador" placeholder="🔍 Buscar producto..." oninput="filtrarProductos()">
   <select id="categoria" onchange="filtrarProductos()">
