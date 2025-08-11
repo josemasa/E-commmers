@@ -293,7 +293,7 @@ function enviarWhatsApp() {
   }
   let mensaje = "🛒 *Detalle del pedido:*\n";
   seleccionados.forEach(p => {
-    mensaje += `${p.cantidad} x ${p.nombre} = $${p.precio * p.cantidad}\n`;
+    mensaje += `${p.cantidad} x ${p.nombre} \n`;
   });
   mensaje += `\n💰 Total: $${document.getElementById('total').textContent}`;
   const phoneNumber = "543816163841";
