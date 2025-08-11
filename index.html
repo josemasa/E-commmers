@@ -46,7 +46,7 @@
       flex-direction: column;
       align-items: stretch;
     }
-
+    
     .producto {
       width: 100%;
       max-width: none;
@@ -64,26 +64,22 @@
       grid-row: 1;
     }
 
-    /* Aquí agrupamos precio, cantidad y botón en segunda fila */
-    .producto > p,
-    .producto > .cantidad,
-    .producto > button.agregar {
+    /* Contenedor para agrupar segunda fila */
+    .producto .fila-dos {
       grid-row: 2;
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    /* Ajustes específicos para que estén alineados horizontalmente en la segunda fila */
-    .producto > p {
-      display: inline-block;
-      margin: 0 8px 0 0;
+    .producto .fila-dos > * {
+      margin: 0;
     }
 
     .cantidad {
-      display: inline-flex;
-      vertical-align: middle;
       margin-top: 0;
+      display: flex;
+      align-items: center;
     }
 
     .cantidad input {
@@ -93,8 +89,6 @@
     button.agregar {
       font-size: 14px;
       padding: 5px 8px;
-      margin-left: 5px;
-      vertical-align: middle;
     }
   }
 </style>
@@ -172,13 +166,15 @@ function mostrarProductos(lista) {
     div.className = 'producto';
     div.innerHTML = `
       <h3>${p.nombre}</h3>
-      <p>💵 $${p.precio}</p>
-      <div class="cantidad">
-        <button onclick="cambiarCantidad('cantidad-${index}', -1)">-</button>
-        <input type="number" id="cantidad-${index}" min="1" value="1">
-        <button onclick="cambiarCantidad('cantidad-${index}', 1)">+</button>
+      <div class="fila-dos">
+        <p>💵 $${p.precio}</p>
+        <div class="cantidad">
+          <button onclick="cambiarCantidad('cantidad-${index}', -1)">-</button>
+          <input type="number" id="cantidad-${index}" min="1" value="1">
+          <button onclick="cambiarCantidad('cantidad-${index}', 1)">+</button>
+        </div>
+        <button class="agregar" onclick="agregarAlPedido('${p.nombre}', ${p.precio}, 'cantidad-${index}')">Agregar</button>
       </div>
-      <button class="agregar" onclick="agregarAlPedido('${p.nombre}', ${p.precio}, 'cantidad-${index}')">Agregar</button>
     `;
     contenedor.appendChild(div);
   });
