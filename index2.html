@@ -4,17 +4,47 @@
 <meta charset="UTF-8">
 <title>Tienda Online</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-  body { font-family: Arial, sans-serif; background: #f8f8f8; margin: 0; padding: 20px; }
+  body { font-family: Arial, sans-serif; background: #9fd5ee; margin: 0; padding: 8px; }
   h1 { text-align: center; }
+  h3 { text-align: center; }
   #filtros { margin-bottom: 15px; text-align: center; }
   select, input[type="text"] { padding: 8px; margin: 5px; }
   #productos { display: flex; flex-wrap: wrap; justify-content: center; }
   .producto {
-    background: white; border: 1px solid #ddd; border-radius: 5px; padding: 2px; margin: 2px;
-    width: 220px; text-align: center; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    background: rgb(186, 235, 241);
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 8px;
+    margin: 6px;
+    flex: 1 1 220px;
+    max-width: 220px;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .cantidad { display: flex; justify-content: center; align-items: center; margin-top: 5px; }
+  .producto img {
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+  .producto h3 {
+    margin: 4px 0;
+    font-size: 18px;
+  }
+  .fila-dos {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+  }
+  .cantidad { display: flex; justify-content: center; align-items: center; }
   .cantidad button { padding: 5px 10px; font-size: 16px; }
   .cantidad input { width: 50px; text-align: center; margin: 0 5px; }
   button.agregar { background-color: #25D366; border: none; color: white; padding: 8px 12px; border-radius: 5px; cursor: pointer; }
@@ -33,7 +63,6 @@
   }
   .modal-contenido h2 { text-align: center; }
   ul { list-style: none; padding: 0; margin: 0; }
-  /* Estilo para items carrito */
   #lista-carrito li {
     background: #fefefe;
     border: 1px solid #ddd;
@@ -57,74 +86,33 @@
     gap: 8px;
     flex-wrap: wrap;
   }
-  #lista-carrito li .fila-dos button {
-    padding: 4px 8px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    background: white;
-  }
-  #lista-carrito li .fila-dos button:hover {
-    background: #eee;
-  }
-  .acciones {
-    display: flex;
-    gap: 6px;
-  }
+  .acciones { display: flex; gap: 6px; }
   .btn { padding: 10px; margin: 5px; border: none; border-radius: 5px; cursor: pointer; }
   .whatsapp { background-color: #25D366; color: white; }
   .vaciar { background-color: #d9534f; color: white; }
   .seguir { background-color: #007bff; color: white; }
 
-  /* ----- Vista tipo lista para celular ----- */
+  /* Modal para imagen grande */
+  #modal-img {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 2000;
+  }
+  #modal-img img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+  }
+  #modal-img span {
+    position: absolute; top: 20px; right: 30px; color: white; font-size: 30px; cursor: pointer;
+  }
+
+  /* Móvil: tarjetas ocupan ancho completo */
   @media (max-width: 600px) {
-    #productos {
-      flex-direction: column;
-      align-items: stretch;
-    }
-    
+    #productos { flex-direction: column; align-items: stretch; }
     .producto {
+      flex: 1 1 auto;
+      max-width: 100%;
       width: 100%;
-      max-width: none;
-      padding: 8px;
-      margin: 4px 0;
-      text-align: left;
-      display: grid;
-      grid-template-rows: auto auto;
-      gap: 6px;
-    }
-
-    .producto h3 {
-      margin: 0;
-      font-size: 16px;
-      grid-row: 1;
-    }
-
-    .producto .fila-dos {
-      grid-row: 2;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .producto .fila-dos > * {
-      margin: 0;
-    }
-
-    .cantidad {
-      margin-top: 0;
-      display: flex;
-      align-items: center;
-    }
-
-    .cantidad input {
-      width: 40px;
-    }
-
-    button.agregar {
-      font-size: 14px;
-      padding: 5px 8px;
     }
   }
 </style>
@@ -132,7 +120,7 @@
 <body>
 
 <h1>🛍️ Tienda Online</h1>
-
+<h3>solo productos con stock</h3>
 <div id="filtros">
   <input type="text" id="buscador" placeholder="🔍 Buscar producto..." oninput="filtrarProductos()">
   <select id="categoria" onchange="filtrarProductos()">
@@ -159,6 +147,12 @@
   </div>
 </div>
 
+<!-- Modal Imagen -->
+<div id="modal-img" onclick="cerrarImagen()">
+  <span onclick="cerrarImagen()">&times;</span>
+  <img id="img-grande" src="" onclick="event.stopPropagation()">
+</div>
+
 <script>
 const sheetID = '1Bcfwxd2RidSKvpFnyKrnzddHpjUkpbuJtA6cXVQSZBE';
 const sheetName = 'Hoja1';
@@ -177,7 +171,8 @@ fetch(url)
       const nombre = row.c[0]?.v || '';
       const precio = row.c[1]?.v || 0;
       const categoria = row.c[2]?.v || 'Sin categoría';
-      productos.push({ nombre, precio, categoria });
+      const clave = (row.c[3]?.v || '').toString().trim();  // <-- CLAVE como texto
+      productos.push({ nombre, precio, categoria, clave });
       if (!categorias.includes(categoria)) categorias.push(categoria);
     });
     cargarCategorias();
@@ -200,7 +195,11 @@ function mostrarProductos(lista) {
   lista.forEach((p, index) => {
     const div = document.createElement('div');
     div.className = 'producto';
+    const nombreArchivo = p.clave + '.jpg';
     div.innerHTML = `
+      <img src="img/${nombreArchivo}" alt="${p.nombre}" 
+           onclick="verImagen('img/${nombreArchivo}')"
+           onerror="this.onerror=null; this.src='img/no-image.jpg';">
       <h3>${p.nombre}</h3>
       <div class="fila-dos">
         <p>💵 $${p.precio}</p>
@@ -214,6 +213,14 @@ function mostrarProductos(lista) {
     `;
     contenedor.appendChild(div);
   });
+}
+
+function verImagen(ruta) {
+  document.getElementById('img-grande').src = ruta;
+  document.getElementById('modal-img').style.display = 'flex';
+}
+function cerrarImagen() {
+  document.getElementById('modal-img').style.display = 'none';
 }
 
 function actualizarResumen() {
@@ -293,7 +300,7 @@ function enviarWhatsApp() {
   }
   let mensaje = "🛒 *Detalle del pedido:*\n";
   seleccionados.forEach(p => {
-    mensaje += `${p.cantidad} x ${p.nombre} = $${p.precio * p.cantidad}\n`;
+    mensaje += `${p.cantidad} x ${p.nombre} \n`;
   });
   mensaje += `\n💰 Total: $${document.getElementById('total').textContent}`;
   const phoneNumber = "543816163841";

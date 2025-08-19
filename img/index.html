@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>🚚JMS DISTRIBUCIONES</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <style type="text/css">
+			.w3-merriweather {
+			  font-family: "Merriweather", serif;
+			}
+			#loader {
+			  position: absolute;
+			  left: 50%;
+			  top: 50%;
+			  z-index: 1;
+			  width: 120px;
+			  height: 120px;
+			  margin: -76px 0 0 -76px;
+			  border: 16px solid #f3f3f3;
+			  border-radius: 50%;
+			  border-top: 16px solid #000000;
+			  -webkit-animation: spin 2s linear infinite;
+			  animation: spin 2s linear infinite;
+			}
+
+			@-webkit-keyframes spin {
+			  0% { -webkit-transform: rotate(0deg); }
+			  100% { -webkit-transform: rotate(360deg); }
+			}
+			.notSelTxt{
+			  -webkit-user-select: none; /* Safari */
+			  -ms-user-select: none; /* IE 10 and IE 11 */
+			  user-select: none; /* Standard syntax */
+			}
+			@keyframes spin {
+			  0% { transform: rotate(0deg); }
+			  100% { transform: rotate(360deg); }
+			}
+			.bar-search {
+			  outline: none !important;
+			  padding: 7px 7px 9px 7px;
+			  color: #333;
+			  font-size: 16px;
+			  height: 39px;
+			  margin-top: 10px;
+			}
+			.bar-height{
+			  height: 60px;
+			}
+			.bar-logo{
+			  margin-top: 5px;
+			  height: 50px;
+			  width: 50px;
+			}
+			.bar-cart{
+			  padding-top: 20px;
+			  padding-left: 5%;
+			  width:30%;
+			}
+			.bar-neg{
+			  overflow: hidden;
+			  width:300px;
+			   text-overflow: ellipsis;
+			   display: -webkit-box;
+			   -webkit-line-clamp: 2;
+			   -webkit-box-orient: vertical;
+			   line-height: normal;
+			}
+
+			.bar-neg-sub{
+			  display: none;
+			}
+			.cnt-ctr-lar{
+			  margin-top: 100px;
+			}
+			.cnt-ctr-sml{
+
+			    display: none;
+			    background: #FFF;
+			}
+
+			.thbGrd{
+			  max-width: 98%;
+			  max-height: 98%;
+			  font-size: 140px;
+			}
+
+			.inpDraLef{
+			  position: absolute;
+			  margin-top: 10px;
+			  margin-left: 5px;
+			}
+
+			.btnWhts{
+			  padding: 5px;
+			  position:fixed;
+			  width:60px;
+			  height:60px;
+			  bottom:40px;
+			  right:40px;
+			  background-color:#25d366;
+			  color:#FFF;
+			  border-radius:50px;
+			  text-align:center;
+			  font-size:30px;
+			  box-shadow: 2px 2px 3px #999;
+			  z-index:100;
+			}
+			.ctnItm{
+			  min-height: 800px;
+			}
+			.ctnCtgDro{
+			  max-height: 300px;
+			  overflow: auto;
+			  width: 250px;
+			}
+			.ctnSrtDro{
+			  width: 180px;
+			}
+			.fxd{
+			  position: fixed;
+			  top:0;
+			  left:0;
+			  width: 100%;
+			  z-index: 1000;
+			}
+			.mrgItm{
+			  margin-left: 8%;
+			  margin-right: 8%;
+			}
+			.pointer{
+				cursor: pointer;
+			}
+			.btnPag{
+				color: #1A73E8;
+				border: none;
+				background: transparent;
+			}
+			.pagCur{
+				padding-top: 5px;
+				padding-bottom: 5px;
+				padding-left: 12px;
+				padding-right: 12px;
+				background: #0000000C;
+				font-weight: bold;
+			}
+			.spc50{
+				margin-top: 50px;
+			}
+			.inNum{
+			  	width: 90px;
+			  	text-align: center;
+			 }
+
+			@media screen and (max-width: 1200px) {
+			  .bar-cart{
+			    padding-top: 20px;
+			    padding-left: 3%;
+			    width:20%;
+			  }
+			  .mrgItm{
+			    margin-left: 4%;
+			    margin-right: 4%;
+			  }
+			}
+
+			@media screen and (max-width: 760px) {
+			  .bar-neg{
+			    display: none;
+			  }
+			  .bar-cart{
+			    padding-left: 16px;
+			    width:80px;
+			  }
+
+
+			  .bar-neg-sub{
+			    display: block;
+			  }
+			  .content-cat{
+			    display: none;
+			  }
+			  .cnt-ctr-lar{
+			    display: none;
+			  }
+			  .cnt-ctr-sml{
+			    display: block;
+			    background: #FFF;
+			  }
+
+			  .ctnItm{
+			    min-height: 400px;
+			  }
+			  .mrgItm{
+			    margin-left: 2%;
+			    margin-right: 2%;
+			  }
+			  .btnPag{
+				color: #1A73E8;
+				border: none;
+				background: transparent;
+				font-size: 11px;
+			  }
+			  .spc50{
+				margin-top: 25px;
+			  }
+			  .inNum{
+			  	width: 60px;
+			  	text-align: center;
+			  }
+
+			}
+
+		</style>
+
+
+    </head>
+    <body ng-app='app' style="background-color: #ebebeb;" ng-controller='ctrMan' ng-cloack>
+
+        <div id="loader"></div>
+        <div id="ctnMan" style="visibility: hidden;">
+            <div class="w3-row {{clt}} fxd" >
+                <div class="w3-col w3-left w3-container bar-height" style="width:80px">
+                    <img id="lg" src="logo.png" class="w3-round bar-logo" alt="">
+                </div>
+                <div class="w3-col w3-left w3-container bar-height bar-neg">
+                    <h4 id="labNeg"  class="w3-merriweather" style="font-weight: bold; line-height: 22px;margin: 5px 0px; line-height: 25px; visibility: hidden;" ng-model="ngc">{{ngc}}</h4>
+                </div>
+                <div class="w3-col w3-right w3-center bar-height bar-cart" >
+                    <div ng-hide='!crt'>
+                        <i class="fa fa-shopping-cart  w3-xlarge pointer w3-left" ng-click='myCrt()' ></i>
+                        <span id="bdgCrt" class="w3-badge w3-red w3-small w3-left" style="margin-top:-5px;margin-left: 1px;">0</span>
+                    </div>
+
+                </div>
+                <div class="w3-rest bar-height">
+                    <input class="w3-input w3-border w3-round bar-search w3-merriweather" placeholder="{{txtBsc+'...'}}" type="text" maxlength="30" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off" ng-model="srch" ng-init="srch=''" ng-Keyup="configPages()">
+                </div>
+            </div>
+            <div class="w3-container w3-merriweather w3-center {{clt}}  bar-neg-sub" style="margin-top:60px;" ng-model="ngc">
+                <h3 ng-hide="ngc.length>15">{{ngc}}</h3><h5 ng-hide="ngc.length<16">{{ngc}}</h5>
+            </div>
+
+
+            <div class="w3-row cnt-ctr-sml w3-merriweather w3-card">
+                <div class="w3-container w3-col s5 w3-center" >
+                    <div onclick="document.getElementById('modCtg').style.display='block'" ng-hide="ctgs.length<2">
+                        <h4 class="notSelTxt" style="color: {{cblu}};">{{txtCtg}}</h4>
+                    </div>
+
+
+
+                </div>
+                <div class="w3-container w3-col s2 w3-center"><h4 style="color: #00000021;">|</h4></div>
+                <div class="w3-container w3-col s5 w3-center" onclick="document.getElementById('modSrt').style.display='block'">
+                    <h4 class="notSelTxt" style="color: {{cblu}};">{{txtSrt}}</h4>
+                </div>
+            </div>
+
+            <div class="w3-container cnt-ctr-lar">
+
+                <div class="w3-left w3-merriweather" style="margin-left:50px;" ng-hide="ctgs.length<2">
+                    {{txtCtg}}
+                    <div class="w3-dropdown-hover w3-merriweather">
+                        <button class="w3-button {{clt}}" style="width:250px">{{txtCtgCrt}}</button>
+                        <div class="w3-dropdown-content w3-bar-block ctnCtgDro {{clt}}" >
+                            <a href="" class="w3-bar-item w3-button" ng-repeat='ctg in ctgs' ng-click='selCtg(ctg)'>{{ctg.n}}</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="w3-right w3-merriweather" style="margin-right:50px;">
+                    {{txtSrt}}
+                    <div class="w3-dropdown-hover w3-merriweather">
+                        <button class="w3-button {{clt}}" style="width:180px">{{txtSrtCrt}}</button>
+                        <div class="w3-dropdown-content w3-bar-block ctnSrtDro {{clt}}">
+                            <a href="" class="w3-bar-item w3-button" ng-click="selSrt(0)">{{txtAlf}}</a>
+                            <a href="" class="w3-bar-item w3-button" ng-click="selSrt(1)">{{txtMyp}}</a>
+                            <a href="" class="w3-bar-item w3-button" ng-click="selSrt(2)">{{txtMnp}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="w3-container spc50" >
+
+                <div ng-init='configPages()'  class="w3-row-padding ctnItm">
+                    <div class="w3-col s12 m6 l4" ng-repeat='itm in itmsCur | orderBy:sort| startFromGrid: currentPage * pageSize | limitTo: pageSize '>
+                        <div class="w3-panel w3-card w3-white mrgItm w3-merriweather">
+                            <div ng-hide="!img"  class="w3-container w3-margin-bottom w3-center" style="height: 260px">
+                                <img ng-hide="{{itm.l=='null'?true:false}}" src="{{itm.l+'.jpg'}}" class="w3-round thbGrd" onload="ajIm(this)">
+                                <i ng-hide="{{itm.l=='null'?false:true}}" class="fa fa-image w3-round thbGrd" style="margin-top:60px;"></i>
+
+                            </div>
+                            <div class="w3-margin-top w3-margin-bottom w3-border-bottom"></div>
+                            <p class="w3-small" style="line-height: 0.7;" ng-hide="cla">{{itm.k}}</p>
+                            <p class="w3-small" style="line-height: 0.7;" ng-hide="uni">{{itm.u}}</p>
+                            <p style="line-height: 1.1; height: 35px;">{{itm.d}}</p>
+
+                            <div class="w3-row w3-center w3-margin-top w3-margin-bottom" style="height:40px;">
+                                <div class="w3-col w3-right" style="width:60px">
+
+                                    <i class="fa fa-cart-plus w3-xxlarge pointer" ng-click='addCrt($event.currentTarget,itm)'  style="color: {{cblu}};" ng-hide='!crt'></i>
+                                </div>
+                                <div class="w3-rest w3-center">
+                                    <label ng-class="{'w3-large':itm.p.length>12,'w3-xlarge':itm.p.length<=12}">{{itm.p}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='btn-group w3-center spc50'>
+                    <button type='button' class='w3-merriweather btnPag pointer' ng-hide='currentPage == 0' ng-click='ntr()'>< {{txtPrv}}</button>
+                    <label class="w3-merriweather w3-large w3-margin-left pagCur">{{currentPage+1}}</label><label class="w3-merriweather w3-large w3-margin-right">{{' / '+ pages.length }}</label>
+                    <button type='button' class='w3-merriweather btnPag pointer' ng-hide='currentPage >= itmsCur.length/pageSize - 1' , ng-click='nxt()'>{{txtNxt}} ></button>
+                </div>
+
+            </div>
+
+            <br><br><br>
+            <footer class="w3-container w3-padding-32 spc50 {{clt}}">
+                <div class="w3-row-padding w3-center">
+                    <div class="{{ txtInf==null||txtInf==''?'':'w3-half' }}" ng-hide="txtTel==null||txtTel==''?true:false">
+                        <div class="w3-container" id="contact">
+                            <h4 class="w3-merriweather">{{ngc}}</h4>
+                            <a href="tel:{{txtTel}}" ><i class="fa fa-phone"></i>{{txtTel}}</a><br>
+                            <a class="w3-margin-top" href="mailto:{{txtCor}}" ng-hide="txtCor==''||txtCor==null?true:false"><i class="fa fa-envelope"></i>{{txtCor}}</a>
+                        </div>
+                    </div>
+
+                    <div class="{{ txtTel==null||txtTel==''?'':'w3-half' }}" ng-hide="txtInf==null||txtInf==''?true:false">
+                        <p id="textInf" ></p>
+                    </div>
+
+
+                </div>
+                <div style="height:90px" ng-hide="!wat"></div>
+            </footer>
+            <a ng-hide="!wat" href="https://api.whatsapp.com/send?phone={{txtTel}}" class="btnWhts" target="_blank">
+                <i class="fa fa-whatsapp w3-xxxlarge"></i>
+            </a>
+
+
+            <div id="modCrt" class="w3-modal" style="padding-top:30px;z-index: 3000;">
+                <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px;overflow: auto; height: 90%;">
+
+                    <div class="w3-center"><br>
+                        <span onclick="document.getElementById('modCrt').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">{{clo}} &times;</span>
+                    </div>
+                    <form class="w3-container w3-margin-top" ng-submit="snd()">
+                        <div class="w3-section">
+                            <div class="w3-padding-small">
+                                <i class="fa fa-user w3-xlarge inpDraLef"></i><input class="w3-input w3-border" style="padding-left: 35px;" placeholder="{{txtPlaNam}}" type="text" ng-model="namc" required>
+                            </div>
+
+                            <input class="w3-button w3-block w3-section w3-padding w3-margin-top w3-merriweather {{clt}}" type="submit" value="{{txtSct}}"  ng-hide="btc">
+                            <div class="w3-center" ng-hide="lod"><i class="fa fa-spinner w3-jumbo w3-spin"></i></div>
+                            <p ng-hide="itmsCrt.itms.length>0?true:false"  class="w3-display-middle">{{txtSin}}</p>
+                            <div class="w3-row w3-border-bottom w3-padding-16" ng-repeat='itm in itmsCrt.itms'>
+                                <div ng-hide="!img"  class="w3-col s3 m2 l2 w3-center">
+                                    <img ng-hide="{{itm.l=='null'?true:false}}" src="{{itm.l+'.jpg'}}" class="w3-round" style="width:90%;">
+
+                                    <i ng-hide="{{itm.l=='null'?false:true}}" class="fa fa-image w3-jumbo w3-round" style="width:90%;"></i>
+
+                                </div>
+                                <div class="w3-col s9 m10 l10">
+                                    <span class="w3-margin-left w3-merriweather" ng-hide="cla">{{itm.k}}</span><br>
+                                    <span class="w3-margin-left w3-merriweather" ng-hide="uni">{{itm.u}}</span><br>
+                                    <span class="w3-margin-left w3-merriweather">{{itm.d}}</span>
+                                    <div class="w3-row">
+                                        <div class="w3-col s2 m5 l5 w3-text-red">
+                                            <i class="fa fa-trash w3-xlarge w3-right" style="margin-top: 5px;" ng-click='delItmCrt(itm)'></i>
+                                        </div>
+                                        <div class="w3-col s10 m7 l7 ">
+                                            <i class="fa fa-plus-circle w3-xlarge w3-margin-right w3-right" ng-click='itm.q=itm.q+1' style="margin-top: 5px;"></i>
+
+                                            <span class="w3-margin-left w3-margin-right w3-xlarge w3-right"><input class="inNum" type="text" ng-model="itm.q" ></span>
+                                            <i class="fa fa-minus-circle w3-xlarge w3-right" ng-click='itm.q=itm.q-1<0?itm.q:itm.q-1' style="margin-top: 5px;"></i>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+
+
+            <div id="modSrt" class="w3-modal" style="z-index: 3000;">
+                <div class="w3-modal-content w3-card-4">
+                    <header class="w3-container {{clt}}">
+                        <span onclick="document.getElementById('modSrt').style.display='none'"
+                                class="w3-button w3-display-topright">&times;</span>
+                        <h2>{{txtSrt}}</h2>
+                    </header>
+                    <div class="w3-container">
+                        <ul class="w3-ul w3-border-bottom">
+                            <li class="w3-container notSelTxt" ng-click="selSrt(0)">{{txtAlf}}</li>
+                            <li class="w3-container notSelTxt" ng-click="selSrt(1)">{{txtMyp}}</li>
+                            <li class="w3-container notSelTxt" ng-click="selSrt(2)">{{txtMnp}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modCtg" class="w3-modal" style="z-index: 3000;">
+                <div class="w3-modal-content w3-card-4">
+                    <header class="w3-container {{clt}}">
+                        <span onclick="document.getElementById('modCtg').style.display='none'"
+                                class="w3-button w3-display-topright">&times;</span>
+                        <h2>{{txtCtg}}</h2>
+                    </header>
+                    <div class="w3-container" style="overflow: auto; max-height: 320px;">
+                        <ul class="w3-ul w3-monospace" ng-repeat='ctg in ctgs'>
+                            <li class="w3-border-bottom w3-container" ng-click='selCtg(ctg)'>{{ctg.n}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <script type="text/javascript">
+
+			angular.module('app', [])
+			  .controller('ctrMan',
+			    function($scope) {
+			      var modCtg = document.getElementById('modCtg');
+			      var modSrt = document.getElementById('modSrt');
+			      var modCrt = document.getElementById('modCrt');
+			      var bdgCrt = document.getElementById("bdgCrt");
+			      window.onclick = function(event) {
+			        if (event.target == modCtg) {
+			          modCtg.style.display = "none";
+			        }else if(event.target == modSrt){
+			          modSrt.style.display = "none";
+			        }
+			        else if(event.target == modCrt){
+			          modCrt.style.display = "none";
+			        }
+			      }
+			      $scope.currentPage = 0;
+			      $scope.pagSiz = 0;
+			      $scope.pageSize = 6;
+			      $scope.pages = [];
+			      $scope.itms = [];
+			      $scope.itmsCur = [];
+			      $scope.ctgs = [];
+			      $scope.itmsCrt = [];
+			      $scope.txtSrt = '...';
+			      $scope.txtCtg = '...';
+			      $scope.txtAlf = '...';
+			      $scope.txtMay = '...';
+			      $scope.txtMen = '...';
+			      $scope.txtNxt = '...';
+			      $scope.txtPrv = '...';
+			      $scope.txtSrtCrt = $scope.txtAlf;
+			      $scope.sort = 'd';
+			      $scope.ctg = '';
+			      $scope.txtTel='';
+			      $scope.txtCor='';
+			      $scope.txtInf='';
+			      $scope.txtSct='';
+			      $scope.txtPlaNam='';
+			      $scope.txtSct='';
+			      $scope.txtSin='';
+			      $scope.uni = false;
+			      $scope.cla = false;
+			      $scope.wat = false;
+			      $scope.crt = false;
+			      $scope.lod = true;
+			      $scope.btc = false;
+			      $scope.img = true;
+			      $scope.ctok='';
+			      $scope.ernw='';
+			      $scope.clt = 'w3-black';
+			      $scope.cblu = '#1A73E8';
+			      $scope.cgre = '#33AA66';
+			      $scope.clo = 'close';
+
+				  $scope.configPages = function() {
+				  		var q = $scope.srch;
+				  		try{
+				  			q = $scope.srch.replace(" ","");
+				  		}catch(e){
+
+				  		}
+				        if($scope.ctg=='' && q=='' ){
+				            $scope.itmsCur = $scope.itms;
+				        }else{
+
+				        	if(q != ''){
+				        		$scope.txtCtgCrt = $scope.ctgs[0].n;
+				        		$scope.ctg = 0;
+				        		$scope.currentPage = 0;
+				        	}
+				            $scope.itmsCur = [];
+				            try{
+				            	$scope.itms.forEach( function(val, ind, arr) {
+
+					                var ax = q==""?true:(val.d.toUpperCase().search(q.toUpperCase() ) > -1  );
+
+					                if( ($scope.ctg=='' || val.c==$scope.ctg) && ax ){
+					                    $scope.itmsCur.push(val);
+					                }
+					            });
+				            }catch(e){
+
+				            }
+				        }
+				        var intRef = 20;
+				        $scope.pages.length = 0;
+				        var ini = $scope.currentPage - 4;
+				        var fin = $scope.currentPage + 5;
+				        if (ini < 1) {
+				          ini = 1;
+				          fin = Math.ceil($scope.itmsCur.length / $scope.pageSize);
+				        } else {
+				            ini = -1;
+				            fin = Math.ceil($scope.itmsCur.length / $scope.pageSize);
+				        }
+				        if (ini < 1) ini = 1;
+				        for (var i = ini; i <= fin; i++) {
+				          $scope.pages.push({
+				            no: i
+				          });
+				        }
+				        if ($scope.currentPage >= $scope.pages.length)
+				          $scope.currentPage = $scope.pages.length;
+				      };
+
+
+
+			      $scope.setPage = function(index) {
+			        $scope.currentPage = index - 1;
+			      };
+
+			      $scope.nxt = function() {
+			        $scope.currentPage = $scope.currentPage + 1;
+			        topScr();
+			      };
+			      $scope.ntr = function() {
+			      	$scope.currentPage = $scope.currentPage - 1;
+			        topScr();
+			      };
+
+
+			      $scope.addCrt = function(e,itm){
+			        e.setAttribute('class','fa fa-check-circle w3-xxlarge pointer');
+			        e.style.color = $scope.cgre;
+				    addItmCrt(itm);
+				    setTimeout(function () {
+				      e.setAttribute('class','fa fa-cart-plus w3-xxlarge pointer');
+				      e.style.color = $scope.cblu;
+				    }, 600);
+
+
+			      }
+
+			      $scope.myCrt = function(){
+			        modCrt.style.display='block';
+			        $scope.itmsCrt = getStg();
+			      }
+			      $scope.delItmCrt = function(itm){
+			        $scope.itmsCrt = delItmCrt(itm);
+			      }
+			      $scope.selSrt = function(sel){
+			        switch(sel) {
+			          case 0:
+			            $scope.txtSrtCrt = $scope.txtAlf;
+			            $scope.sort = 'd';
+			            break;
+			          case 1:
+			            $scope.txtSrtCrt = $scope.txtMyp;
+			            $scope.sort = '-v';
+			            break;
+			          case 2:
+			            $scope.txtSrtCrt = $scope.txtMnp;
+			            $scope.sort = 'v';
+			            break;
+			        }
+			        modSrt.style.display = "none";
+			      }
+			      $scope.selCtg = function(ctg){
+
+			        $scope.txtCtgCrt = ctg.n;
+			        $scope.ctg = ctg.i==0?'':ctg.i;
+			        modCtg.style.display = "none";
+			        $scope.currentPage = 0;
+			        $scope.srch = '';
+			        $scope.configPages();
+			      }
+			      $scope.srchAll = function(){
+			        console.log("mycart: "+$scope.srch);
+
+			      }
+			      $scope.snd = function(){
+
+			        var text = $scope.txtPlaNam+": "+$scope.namc+"\n\n";
+			        var suc = true;
+
+			        $scope.itmsCrt.itms.forEach( function(v, i, ar) {
+
+			        	if( !(!isNaN(v.q) && !isNaN(parseFloat(v.q) ) ) ){
+			        		suc = false;
+			        		return;
+			        	}
+
+			            text += "*"+v.q+" -> "+v.d+" :"+ v.u+" : "+v.k+"\n";
+			        });
+
+			        if(suc){
+			        	setStg({});
+			            $scope.itmsCrt = [];
+			            bdgCrt.style.visibility = "hidden";
+			            modCrt.style.display = "none";
+
+				        window.open('https://api.whatsapp.com/send?phone='+encodeURIComponent($scope.txtTel)+'&text='+encodeURIComponent(text),'_blank')
+			        }else{
+			        	alert("only numeric values");
+			        }
+
+
+			      }
+			      addItmCrt(null);
+			      var unts = {};
+			      var result = data;
+
+
+			        var ctnMan = document.getElementById("ctnMan");
+			        ctnMan.style.visibility = "visible";
+			        var loader = document.getElementById("loader");
+			        loader.style.visibility = "hidden";
+			        var lg_v = document.getElementById("lg");
+			        var ngc = result.ngc;
+
+
+			        $scope.txtSrt = result.orp;
+			        $scope.txtCtg = result.ctgs;
+			        $scope.txtAlf = result.alf;
+			        $scope.txtMyp = result.myp;
+			        $scope.txtMnp = result.mnp;
+			        $scope.txtBsc = result.bsc;
+			        $scope.txtNxt = result.nxt;
+			      	$scope.txtPrv = result.prv;
+			        $scope.ctok = result.ctok;
+			        $scope.ernw = result.ernw;
+
+			        $scope.txtTel = result.tel2;
+			        $scope.txtCor = result.cor2;
+			        $scope.txtInf = result.dir2;
+
+			        $scope.img = result.img;
+
+			        $scope.uni = !result.uni;
+			        $scope.cla = !result.cla;
+			        $scope.clo = result.clo;
+
+
+			        $scope.wat = result.wha&&result.tel2!='';
+			        $scope.crt = result.crt&&result.tel2!='';
+			        $scope.txtSct = result.sct;
+			        $scope.txtPlaNam = result.nam;
+
+			        $scope.txtSin = result.sin;
+
+			        $scope.txtSct = result.sct;
+			        $scope.txtSrtCrt = $scope.txtAlf;
+
+			        $scope.clt = result.clt;
+			        $scope.ngc = ngc;
+
+
+			        if(result.lg.length>0){
+			          $scope.lg = result.lg;
+			        }else{
+			          lg_v.style.visibility = "hidden";
+			          $scope.lg = "0=="
+			        }
+
+			        result.und.forEach( function(val, ind, arr) {
+			            unts[val.i] = val.n;
+			        });
+
+
+			        $scope.itms = result.itm;
+			        $scope.ctgs = result.ctg;
+			        $scope.txtCtgCrt = $scope.ctgs[0].n;
+
+
+			        $scope.itms.forEach( function(val, ind, arr) {
+			            val.u = unts[val.u];
+
+			        });
+
+
+
+			        var link = document.createElement('link');
+			        link.rel = 'icon';
+			        document.getElementsByTagName('head')[0].appendChild(link);
+			        link.href = 'logo.png';
+			        $scope.currentPage = 1;
+			        $scope.configPages();
+			        topScr();
+					setTimeout(function () {
+				      	var el = document.getElementById('labNeg');
+					   	var divHeight = el.offsetHeight
+					   	var lineHeight = parseInt(el.style.lineHeight);
+					   	var lines = divHeight / lineHeight;
+	    				if( lines < 2){
+	    					el.style.lineHeight = "50px";
+	    				}
+	    				if($scope.ngc.length>25){
+							el.style.fontSize = "16px";
+	    				}
+	    				if($scope.ngc.length>40){
+							el.style.fontSize = "14px";
+	    				}
+	    				el.style.visibility = "visible";
+				    }, 400);
+			    })
+			.filter('startFromGrid', function() {
+			  return function(input, start) {
+			    start = +start;
+			    return input.slice(start);
+			  }
+			});
+			var stgLoc={};
+            function stgChk(){
+                var test = 'test';
+                try {
+                    localStorage.setItem(test, test);
+                    localStorage.removeItem(test);
+                    return true;
+                } catch(e) {
+                    return false;
+                }
+            }
+            function getStg(){
+                if( stgChk() ){
+                  var itmsAux = localStorage.getItem("mn_shop_13x");
+                  return itmsAux==null?{}:JSON.parse(itmsAux);
+                }else{
+                  return stgLoc;
+                }
+            }
+            function setStg(itms){
+                if( stgChk() ){
+                  localStorage.setItem("mn_shop_13x", JSON.stringify(itms) );
+                }else{
+                  stgLoc = itms;
+                }
+            }
+			function addItmCrt(itm){
+			    var itmsCrt = getStg();
+			    if(itmsCrt.itms==undefined){
+			        itmsCrt.itms = [];
+			        if(itm!=null){
+			          itm.q = 1;
+			          itmsCrt.itms.push(itm);
+			        }
+			      }else if(itm!=null){
+			          var aux = null;
+			          for(var i=0;i<itmsCrt.itms.length;i++){
+			            if(itmsCrt.itms[i].i==itm.i){
+			                aux=itmsCrt.itms[i];
+			                break;
+			              }
+			          }
+			          if(aux==null){
+			            itm.q = 1;
+			            itmsCrt.itms.push(itm);
+			          }else{
+			            aux.q +=1;
+			          }
+
+			      }
+			    setStg(itmsCrt);
+			    bdgCrt.innerHTML = itmsCrt.itms.length;
+			    bdgCrt.style.visibility = itmsCrt.itms.length==0? "hidden":"visible";
+
+			}
+			function delItmCrt(itm){
+			    var itmsCrt = getStg();
+			    var ind = -1;
+			    for(var i=0;i<itmsCrt.itms.length;i++){
+			      if(itmsCrt.itms[i].i==itm.i){
+			          ind=i;
+			          break;
+			        }
+			    }
+			    if(ind>-1){
+			      itmsCrt.itms.splice(ind, 1);
+			    }
+			    setStg(itmsCrt);
+			    bdgCrt.innerHTML = itmsCrt.itms.length;
+			    bdgCrt.style.visibility = itmsCrt.itms.length==0? "hidden":"visible";
+			    return itmsCrt;
+			}
+			function topScr() {
+			  document.body.scrollTop = 0;
+			  document.documentElement.scrollTop = 0;
+			}
+			function ajIm(el){
+				el.style.marginTop = ((260-el.offsetHeight)/2)+"px";
+			}
+			var data = /*#d4t4#*/ {"itm":[{"c":1,"d":"🚬(B)PIER BOX20","i":7,"k":"Sin Clave","l":"img_7","p":"$11.900,00","u":11,"v":11900,"z":10},{"c":1,"d":"🚬(B)PIER BOX20 VERDE","i":10,"k":"77990570","l":"img_10","p":"$11.900,00","u":11,"v":11900,"z":10},{"c":1,"d":"🚬(C&T)CJ","i":25,"k":"Sin Clave","l":"img_25","p":"$8.100,00","u":12,"v":8100,"z":10},{"c":1,"d":"🚬(C&T)GO","i":16,"k":"7793196202015","l":"img_16","p":"$8.000,00","u":12,"v":8000,"z":10},{"c":1,"d":"🚬(E)BOLD KS","i":323,"k":"Sin Clave","l":"img_323","p":"$8.550,00","u":12,"v":8550,"z":10},{"c":1,"d":"🚬(E)MILENIO (CLICK) NEGRO","i":19,"k":"7798100200453","l":"img_19","p":"$15.300,00","u":12,"v":15300,"z":10},{"c":1,"d":"🚬(E)MILENIO (CLICK) SANDÍA 🍉","i":376,"k":"Sin Clave","l":"null","p":"$15.300,00","u":12,"v":15300,"z":10},{"c":1,"d":"🚬(E)MILENIO (CLICK)UVA🍇","i":375,"k":"Sin Clave","l":"null","p":"$15.300,00","u":12,"v":15300,"z":10},{"c":1,"d":"🚬(E)MILENIO GOLD","i":27,"k":"77919168","l":"img_27","p":"$13.700,00","u":12,"v":13700,"z":10},{"c":1,"d":"🚬(E)MILENIO ROJO","i":1,"k":"0110000077906615","l":"img_1","p":"$13.700,00","u":12,"v":13700,"z":10},{"c":1,"d":"🚬(E)MILENIO VERDE","i":3,"k":"7798100200491","l":"img_3","p":"$13.700,00","u":12,"v":13700,"z":10},{"c":1,"d":"🚬(E)MILL 20 K.S.","i":17,"k":"77906595","l":"img_17","p":"$11.800,00","u":12,"v":11800,"z":10},{"c":1,"d":"🚬(E)MILL CONV. BOX 20","i":365,"k":"Sin Clave","l":"img_365","p":"$11.900,00","u":12,"v":11900,"z":10},{"c":1,"d":"🚬(S)KIEL BOX 20","i":6,"k":"77978226","l":"img_6","p":"$11.650,00","u":11,"v":11650,"z":10},{"c":1,"d":"🚬(S)KIEL KS 20","i":12,"k":"77978233","l":"img_12","p":"$11.500,00","u":23,"v":11500,"z":10},{"c":1,"d":"🚬(S)MASTER KS","i":11,"k":"77941558","l":"img_11","p":"$13.350,00","u":11,"v":13350,"z":10},{"c":1,"d":"🚬(S)RED POINT 20KS","i":13,"k":"Sin Clave","l":"img_13","p":"$15.200,00","u":12,"v":15200,"z":10},{"c":1,"d":"🚬(S)RED POINT MENTOLADO","i":24,"k":"Sin Clave","l":"img_24","p":"$15.200,00","u":12,"v":15200,"z":10},{"c":1,"d":"🚬(S)RED POINT ON 20BOX","i":18,"k":"Sin Clave","l":"img_18","p":"$16.120,00","u":12,"v":16120,"z":10},{"c":1,"d":"🚬(T.T )GOLDEN KS VERDE","i":113,"k":"Sin Clave","l":"img_113","p":"$8.750,00","u":11,"v":8750,"z":10},{"c":1,"d":"🚬(T.T.)GOLDEN KS RED","i":117,"k":"77980748","l":"img_117","p":"$8.750,00","u":11,"v":8750,"z":10},{"c":1,"d":"🚬BOXER UVA BOX20","i":332,"k":"Sin Clave","l":"img_332","p":"$12.000,00","u":12,"v":12000,"z":10},{"c":1,"d":"🚬HILLS CONVERTIBLE","i":28,"k":"7840495000504","l":"img_28","p":"$10.300,00","u":23,"v":10300,"z":10},{"c":1,"d":"🚬RODEO 20KS","i":344,"k":"Sin Clave","l":"img_344","p":"$8.200,00","u":23,"v":8200,"z":10},{"c":6,"d":"🔥ENCENDEDOR CANDELA X25","i":148,"k":"Sin Clave","l":"img_148","p":"$7.250,00","u":11,"v":7250,"z":10},{"c":6,"d":"🔥ENCENDEDORES FUEGO LANDIA X25","i":22,"k":"0127798370511208","l":"img_22","p":"$6.300,00","u":12,"v":6300,"z":10},{"c":6,"d":"🗞️CELULOSA DRPIN X50 (📦 X25)","i":363,"k":"Sin Clave","l":"img_363","p":"$630,00","u":0,"v":630,"z":10},{"c":6,"d":"🗞️CELULOSA ZEUS X50 (📦 X25)","i":15,"k":"Sin Clave","l":"img_15","p":"$700,00","u":22,"v":700,"z":10},{"c":6,"d":"🗞️PAPELILLO OCB NEGRO  X50LILLOS","i":246,"k":"3057067101253","l":"img_246","p":"$810,00","u":11,"v":810,"z":10},{"c":7,"d":"💊(➕)BUSCAPINA COMPUESTA X10","i":29,"k":"Sin Clave","l":"img_29","p":"$6.415,00","u":16,"v":6415,"z":10},{"c":7,"d":"💊(➕)TAFIROL 1GR X8","i":35,"k":"Sin Clave","l":"img_35","p":"$2.000,00","u":16,"v":2000,"z":10},{"c":7,"d":"💊ACTRON 400ML X10","i":55,"k":"Sin Clave","l":"img_55","p":"$2.546,00","u":14,"v":2546,"z":10},{"c":7,"d":"💊ACTRON 600ML X10","i":54,"k":"7793640215622","l":"img_54","p":"$6.748,00","u":16,"v":6748,"z":10},{"c":7,"d":"💊ACTRON MUJER","i":364,"k":"Sin Clave","l":"img_364","p":"$2.672,00","u":14,"v":2672,"z":10},{"c":7,"d":"💊ACTRON PLUS X8","i":116,"k":"Sin Clave","l":"img_116","p":"$3.407,00","u":14,"v":3407,"z":10},{"c":7,"d":"💊ALIKAL LIMON X1 (📦 X30)","i":42,"k":"7794640170874","l":"img_42","p":"$640,00","u":14,"v":640,"z":10},{"c":7,"d":"💊ALIKAL NARANJA X1  (📦 X30)","i":43,"k":"Sin Clave","l":"img_43","p":"$640,00","u":14,"v":640,"z":10},{"c":7,"d":"💊ALIKAL X1 (📦 X30)","i":30,"k":"7794640170850","l":"img_30","p":"$640,00","u":14,"v":640,"z":10},{"c":7,"d":"💊AMOXICILINA 500 X8","i":57,"k":"Sin Clave","l":"img_57","p":"$1.650,00","u":14,"v":1650,"z":10},{"c":7,"d":"💊ASPIRINETAS PREVENT X10","i":266,"k":"Sin Clave","l":"img_266","p":"$1.646,00","u":14,"v":1646,"z":10},{"c":7,"d":"💊ASPIRINETAS X14","i":92,"k":"Sin Clave","l":"img_92","p":"$890,00","u":14,"v":890,"z":10},{"c":7,"d":"💊AZITROMICINA X3","i":58,"k":"Sin Clave","l":"img_58","p":"$3.000,00","u":14,"v":3000,"z":10},{"c":7,"d":"💊BAYASPIRINA C (CALIENTE)","i":186,"k":"Sin Clave","l":"img_186","p":"$1.198,00","u":14,"v":1198,"z":10},{"c":7,"d":"💊BAYASPIRINA X10","i":53,"k":"Sin Clave","l":"img_53","p":"$1.782,00","u":14,"v":1782,"z":10},{"c":7,"d":"💊BILETAN ENCIMATICO X10","i":59,"k":"Sin Clave","l":"img_59","p":"$4.534,00","u":14,"v":4534,"z":10},{"c":7,"d":"💊BUSCAPINA PERLAS","i":293,"k":"Sin Clave","l":"img_293","p":"$4.761,00","u":14,"v":4761,"z":10},{"c":7,"d":"💊CAFIASPIRINA PLUS X10","i":56,"k":"Sin Clave","l":"img_56","p":"$2.594,00","u":14,"v":2594,"z":10},{"c":7,"d":"💊CAFIASPIRINAX10 (📦 X3)","i":41,"k":"Sin Clave","l":"img_41","p":"$2.053,00","u":14,"v":2053,"z":10},{"c":7,"d":"💊CARBON + ANTIBIÓTICO X10","i":102,"k":"Sin Clave","l":"img_102","p":"$6.300,00","u":14,"v":6300,"z":10},{"c":7,"d":"💊CARBON ACTIVADO X10","i":60,"k":"Sin Clave","l":"img_60","p":"$1.740,00","u":14,"v":1740,"z":10},{"c":7,"d":"💊CEFALEXINA 500 X8","i":85,"k":"Sin Clave","l":"img_85","p":"$1.930,00","u":14,"v":1930,"z":10},{"c":7,"d":"💊CHICLE LAXANTE","i":282,"k":"Sin Clave","l":"img_282","p":"$3.740,00","u":14,"v":3740,"z":10},{"c":7,"d":"💊CIPROFLOXACINA 500MG X10 (ANTIBIÓTICO)","i":275,"k":"Sin Clave","l":"null","p":"$1.740,00","u":14,"v":1740,"z":10},{"c":7,"d":"💊CURITAS X8","i":52,"k":"7702003010743","l":"img_52","p":"$640,00","u":14,"v":640,"z":10},{"c":7,"d":"💊DEXALERGIN X20 (1\/2 TIRA)","i":86,"k":"Sin Clave","l":"img_86","p":"$15.860,00","u":14,"v":15860,"z":10},{"c":7,"d":"💊DEXAMETASONA X10","i":49,"k":"Sin Clave","l":"img_49","p":"$820,00","u":14,"v":820,"z":10},{"c":7,"d":"💊DICLOFENAC 100ML","i":338,"k":"Sin Clave","l":"img_338","p":"$1.800,00","u":14,"v":1800,"z":10},{"c":7,"d":"💊DICLOFENAC 75ML","i":48,"k":"Sin Clave","l":"img_48","p":"$680,00","u":14,"v":680,"z":10},{"c":7,"d":"💊DICLOFENAC FLEX +PIRID X10","i":47,"k":"Sin Clave","l":"img_47","p":"$1.040,00","u":14,"v":1040,"z":10},{"c":7,"d":"💊ENALAPRIL X10","i":95,"k":"Sin Clave","l":"img_95","p":"$500,00","u":14,"v":500,"z":10},{"c":7,"d":"💊FLEX B12 X10","i":87,"k":"Sin Clave","l":"img_87","p":"$5.700,00","u":14,"v":5700,"z":10},{"c":7,"d":"💊FRASCOS ESTERILIZADOS 125CC","i":181,"k":"Sin Clave","l":"img_181","p":"$400,00","u":14,"v":400,"z":10},{"c":7,"d":"💊GARGALETAS X9","i":221,"k":"Sin Clave","l":"img_221","p":"$5.072,00","u":14,"v":5072,"z":10},{"c":7,"d":"💊GASAS SOBRE","i":61,"k":"Sin Clave","l":"img_61","p":"$340,00","u":14,"v":340,"z":10},{"c":7,"d":"💊GENIOL 1G","i":101,"k":"Sin Clave","l":"img_101","p":"$2.305,00","u":14,"v":2305,"z":10},{"c":7,"d":"💊IBU EVANOL MAX X10","i":299,"k":"Sin Clave","l":"img_299","p":"$3.195,00","u":14,"v":3195,"z":10},{"c":7,"d":"💊IBU EVANOL R.A.","i":46,"k":"Sin Clave","l":"img_46","p":"$1.970,00","u":14,"v":1970,"z":10},{"c":7,"d":"💊IBUPIRAC MIGRA X10","i":265,"k":"Sin Clave","l":"img_265","p":"$5.581,00","u":14,"v":5581,"z":10},{"c":7,"d":"💊IBUPROFENO 400MG","i":32,"k":"Sin Clave","l":"img_32","p":"$750,00","u":14,"v":750,"z":10},{"c":7,"d":"💊IBUPROFENO 600MG X10","i":39,"k":"Sin Clave","l":"img_39","p":"$900,00","u":14,"v":900,"z":10},{"c":7,"d":"💊IBUPROFENO JARABE 4%","i":98,"k":"Sin Clave","l":"img_98","p":"$2.160,00","u":14,"v":2160,"z":10},{"c":7,"d":"💊JERINGA 💉 10ML CON AGUJA","i":45,"k":"Sin Clave","l":"img_45","p":"$216,00","u":14,"v":216,"z":10},{"c":7,"d":"💊KETEROLAC 20MG X10","i":31,"k":"Sin Clave","l":"img_31","p":"$720,00","u":14,"v":720,"z":10},{"c":7,"d":"💊LOPERAMIDA 2MG X10 (ANTIDIARREICO)","i":38,"k":"Sin Clave","l":"img_38","p":"$500,00","u":14,"v":500,"z":10},{"c":7,"d":"💊LORATADINA X10 (ALERGIA)","i":111,"k":"Sin Clave","l":"img_111","p":"$540,00","u":14,"v":540,"z":10},{"c":7,"d":"💊MIGRAL COMPUESTO X10","i":65,"k":"Sin Clave","l":"img_65","p":"$3.988,00","u":14,"v":3988,"z":10},{"c":7,"d":"💊MILANTA X8 (SABORIZADO)","i":312,"k":"Sin Clave","l":"img_312","p":"$3.076,00","u":14,"v":3076,"z":10},{"c":7,"d":"💊NEXTGRIP X10","i":350,"k":"Sin Clave","l":"img_350","p":"$3.161,00","u":14,"v":3161,"z":10},{"c":7,"d":"💊NOVALGINA X10","i":37,"k":"Sin Clave","l":"img_37","p":"$7.004,00","u":14,"v":7004,"z":10},{"c":7,"d":"💊OMEPRAZOL X15","i":51,"k":"Sin Clave","l":"img_51","p":"$780,00","u":16,"v":780,"z":10},{"c":7,"d":"💊PARACETAMOL BAYER 500ML","i":67,"k":"Sin Clave","l":"img_67","p":"$2.100,00","u":14,"v":2100,"z":10},{"c":7,"d":"💊PENICILINA 1.5MILLON X6","i":276,"k":"Sin Clave","l":"img_276","p":"$3.420,00","u":14,"v":3420,"z":10},{"c":7,"d":"💊PENICILINA 1MILLON X6","i":179,"k":"Sin Clave","l":"img_179","p":"$2.280,00","u":14,"v":2280,"z":10},{"c":7,"d":"💊QURA PLUS X10","i":44,"k":"Sin Clave","l":"img_44","p":"$3.594,00","u":14,"v":3594,"z":10},{"c":7,"d":"💊REFRIANEX X10","i":91,"k":"Sin Clave","l":"img_91","p":"$3.437,00","u":14,"v":3437,"z":10},{"c":7,"d":"💊RELIVERAN X20","i":180,"k":"Sin Clave","l":"img_180","p":"$7.930,00","u":14,"v":7930,"z":10},{"c":7,"d":"💊RESAQUIT X4","i":63,"k":"Sin Clave","l":"img_63","p":"$1.874,00","u":14,"v":1874,"z":10},{"c":7,"d":"💊SERTAL COMPUESTO X10","i":50,"k":"Sin Clave","l":"img_50","p":"$5.898,00","u":14,"v":5898,"z":10},{"c":7,"d":"💊SERTAL PERLAS X10","i":36,"k":"Sin Clave","l":"img_36","p":"$4.140,00","u":14,"v":4140,"z":10},{"c":7,"d":"💊TAFIROL 500MG X10","i":34,"k":"Sin Clave","l":"img_34","p":"$2.389,00","u":14,"v":2389,"z":10},{"c":7,"d":"💊TAFIROL FORTE 650MGR X10","i":62,"k":"Sin Clave","l":"img_62","p":"$2.806,00","u":14,"v":2806,"z":10},{"c":7,"d":"💊TAFIROL MIGRA X10","i":96,"k":"Sin Clave","l":"img_96","p":"$4.496,00","u":14,"v":4496,"z":10},{"c":7,"d":"💊TAFIROL PLUS X8","i":33,"k":"Sin Clave","l":"img_33","p":"$3.346,00","u":14,"v":3346,"z":10},{"c":7,"d":"💊TAFIROLITO 80MG X10","i":112,"k":"Sin Clave","l":"img_112","p":"$2.465,00","u":14,"v":2465,"z":10},{"c":7,"d":"💊TETRALGIN X10","i":135,"k":"Sin Clave","l":"img_135","p":"$3.982,00","u":14,"v":3982,"z":10},{"c":7,"d":"💊UVASAL 2 SOBRES (📦 X15)","i":64,"k":"7794640131400","l":"img_64","p":"$831,00","u":14,"v":831,"z":10},{"c":7,"d":"💊VIRIPOTENS MASTICABLE X2","i":94,"k":"Sin Clave","l":"img_94","p":"$960,00","u":14,"v":960,"z":10},{"c":13,"d":"🍟PIPAS CLÁSICAS X10U","i":244,"k":"Sin Clave","l":"img_244","p":"$2.400,00","u":15,"v":2400,"z":10},{"c":13,"d":"🍟PIPAS GIGANTES X1","i":146,"k":"7798044150562","l":"img_146","p":"$546,00","u":15,"v":546,"z":10},{"c":13,"d":"🍪(➕)DON SATUR DULCE X200G","i":155,"k":"Sin Clave","l":"img_155","p":"$770,00","u":15,"v":770,"z":10},{"c":13,"d":"🍪(➕)DON SATUR SALADO X200G","i":156,"k":"Sin Clave","l":"img_156","p":"$770,00","u":15,"v":770,"z":10},{"c":13,"d":"🍪(➕)MEDIA TARDE X3 (📦 X14)","i":122,"k":"Sin Clave","l":"img_122","p":"$1.010,00","u":15,"v":1010,"z":10},{"c":13,"d":"🍪(➕)PEPAS TRIO X200","i":152,"k":"Sin Clave","l":"img_152","p":"$645,00","u":15,"v":645,"z":10},{"c":13,"d":"🍪(➕)POLVORITA CHOCOLATE 81G","i":234,"k":"03170304","l":"img_234","p":"$420,00","u":15,"v":420,"z":10},{"c":13,"d":"🍪(➕)POLVORITA FRUTILLA 81G","i":223,"k":"17790040139173","l":"img_223","p":"$420,00","u":15,"v":420,"z":10},{"c":13,"d":"🍪(➕)POLVORITA VAINILLA 81G","i":224,"k":"17790040139166","l":"img_224","p":"$420,00","u":15,"v":420,"z":10},{"c":13,"d":"🍪AMOR 100G","i":316,"k":"Sin Clave","l":"img_316","p":"$1.080,00","u":15,"v":1080,"z":10},{"c":13,"d":"🍪CHOCOLINAS 170G","i":300,"k":"Sin Clave","l":"img_300","p":"$1.400,00","u":15,"v":1400,"z":10},{"c":13,"d":"🍪CHOCOLINAS X100G","i":278,"k":"Sin Clave","l":"img_278","p":"$838,00","u":15,"v":838,"z":10},{"c":13,"d":"🍪FAUNA X150G","i":183,"k":"Sin Clave","l":"img_183","p":"$540,00","u":15,"v":540,"z":10},{"c":13,"d":"🍪GALLETA HAMLET CHOCOLATE 152G","i":236,"k":"Sin Clave","l":"img_236","p":"$978,00","u":15,"v":978,"z":10},{"c":13,"d":"🍪GALLETA HAMLET VAINILLA152G","i":237,"k":"Sin Clave","l":"img_237","p":"$978,00","u":15,"v":978,"z":10},{"c":13,"d":"🍪MERENGADAS","i":185,"k":"Sin Clave","l":"img_185","p":"$1.070,00","u":15,"v":1070,"z":10},{"c":13,"d":"🍪MINI OREO X50G","i":139,"k":"Sin Clave","l":"img_139","p":"$768,00","u":15,"v":768,"z":10},{"c":13,"d":"🍪MINI PEPITO X50G","i":140,"k":"Sin Clave","l":"img_140","p":"$768,00","u":15,"v":768,"z":10},{"c":13,"d":"🍪OBLITA X46G DDL.","i":164,"k":"Sin Clave","l":"img_164","p":"$312,00","u":15,"v":312,"z":10},{"c":13,"d":"🍪OBLITA X46G FRUTILLA","i":162,"k":"Sin Clave","l":"img_162","p":"$312,00","u":15,"v":312,"z":10},{"c":13,"d":"🍪OBLITA X46G VAINILLA","i":163,"k":"Sin Clave","l":"img_163","p":"$312,00","u":15,"v":312,"z":10},{"c":13,"d":"🍪OREO 118G","i":170,"k":"Sin Clave","l":"img_170","p":"$1.650,00","u":15,"v":1650,"z":10},{"c":13,"d":"🍪PEPITOS 118G","i":197,"k":"Sin Clave","l":"img_197","p":"$1.560,00","u":15,"v":1560,"z":10},{"c":13,"d":"🍪PORTEÑITAS X130G","i":198,"k":"Sin Clave","l":"img_198","p":"$1.074,00","u":15,"v":1074,"z":10},{"c":13,"d":"🍪SONRISAS","i":184,"k":"Sin Clave","l":"img_184","p":"$1.070,00","u":15,"v":1070,"z":10},{"c":13,"d":"🍪SURT. BAGLEY 400G","i":347,"k":"Sin Clave","l":"img_347","p":"$2.600,00","u":15,"v":2600,"z":10},{"c":13,"d":"🍪SURT. DIVERSIÓN X400G","i":151,"k":"Sin Clave","l":"img_151","p":"$2.148,00","u":15,"v":2148,"z":10},{"c":13,"d":"🍪SURT. LIA 400G","i":345,"k":"Sin Clave","l":"img_345","p":"$1.590,00","u":15,"v":1590,"z":10},{"c":13,"d":"🍪SURT. SOLITAS EXHIBICIÓN X170G","i":303,"k":"Sin Clave","l":"img_303","p":"$484,00","u":15,"v":484,"z":10},{"c":13,"d":"🍪SURT. SOLITAS EXHIBICIÓN X400G","i":189,"k":"Sin Clave","l":"img_189","p":"$1.070,00","u":15,"v":1070,"z":10},{"c":13,"d":"🍪SURT. TERRABUSSI VARIEDAD 400G","i":343,"k":"Sin Clave","l":"img_343","p":"$2.520,00","u":15,"v":2520,"z":10},{"c":13,"d":"🍪VAINILLAS MAURI X80G (📦 X36)","i":154,"k":"Sin Clave","l":"img_154","p":"$432,00","u":15,"v":432,"z":10},{"c":13,"d":"🍪VOCACION ACARAMELADA 145G","i":175,"k":"Sin Clave","l":"img_175","p":"$680,00","u":15,"v":680,"z":10},{"c":13,"d":"🍪VOCACION AMARILLA 145G","i":280,"k":"Sin Clave","l":"img_280","p":"$640,00","u":15,"v":640,"z":10},{"c":13,"d":"🍫CELOFAN MISKY BLANCO X25G","i":230,"k":"Sin Clave","l":"img_230","p":"$690,00","u":15,"v":690,"z":10},{"c":13,"d":"🍫CELOFAN MISKY CRUNCHY","i":258,"k":"Sin Clave","l":"img_258","p":"$695,00","u":15,"v":695,"z":10},{"c":13,"d":"🍫CELOFAN MISKY NEGRO X25G","i":229,"k":"Sin Clave","l":"img_229","p":"$690,00","u":15,"v":690,"z":10},{"c":13,"d":"🍫DAQUI X70G","i":166,"k":"7790380042167","l":"img_166","p":"$900,00","u":15,"v":900,"z":10},{"c":13,"d":"🍫DUCREM  AVELLANA X36U","i":240,"k":"Sin Clave","l":"img_240","p":"$5.196,00","u":15,"v":5196,"z":10},{"c":13,"d":"🍫DUCREM  NAPOLITANO X36U","i":241,"k":"Sin Clave","l":"img_241","p":"$5.196,00","u":15,"v":5196,"z":10},{"c":13,"d":"🍫DUCREM LECHE CONDENSADA X36U","i":242,"k":"Sin Clave","l":"img_242","p":"$5.196,00","u":15,"v":5196,"z":10},{"c":13,"d":"🍫FULL MANI X100G","i":167,"k":"27790380024754","l":"img_167","p":"$2.200,00","u":15,"v":2200,"z":10},{"c":13,"d":"🍫FULL MANI X160G","i":371,"k":"Sin Clave","l":"null","p":"$3.392,00","u":15,"v":3392,"z":10},{"c":13,"d":"🍫HAMLET ALMENDRA Y MANI (📦 X21)","i":141,"k":"7794612065719","l":"img_141","p":"$594,00","u":15,"v":594,"z":10},{"c":13,"d":"🍫HAMLET BICOLOR (📦 X21)","i":178,"k":"7794612491013","l":"img_178","p":"$594,00","u":15,"v":594,"z":10},{"c":13,"d":"🍫HAMLET CHOCOLATOSO (📦 X21)","i":142,"k":"7794612066211","l":"img_142","p":"$594,00","u":15,"v":594,"z":10},{"c":13,"d":"🍫HAMLET LECHE Y COOKIES (📦 X21)","i":359,"k":"Sin Clave","l":"img_359","p":"$594,00","u":15,"v":594,"z":10},{"c":13,"d":"🍫SAPITO CHOCOLATOSO X24","i":192,"k":"Sin Clave","l":"img_192","p":"$4.750,00","u":15,"v":4750,"z":10},{"c":13,"d":"🍫SAPITO FRUTILLA X24","i":193,"k":"Sin Clave","l":"img_193","p":"$4.750,00","u":15,"v":4750,"z":10},{"c":13,"d":"🍫SAPITO MANI X24","i":138,"k":"Sin Clave","l":"img_138","p":"$4.750,00","u":15,"v":4750,"z":10},{"c":13,"d":"🍫TOKKE CON DLL. X72G","i":366,"k":"Sin Clave","l":"img_366","p":"$1.980,00","u":15,"v":1980,"z":10},{"c":13,"d":"🍫TOKKE DDL. X72G","i":75,"k":"Sin Clave","l":"img_75","p":"$1.980,00","u":15,"v":1980,"z":10},{"c":13,"d":"🍬ALKA CHERRY X200G","i":321,"k":"Sin Clave","l":"img_321","p":"$2.040,00","u":15,"v":2040,"z":10},{"c":13,"d":"🍬ALKA FRUTA  X800G (400U)","i":267,"k":"Sin Clave","l":"img_267","p":"$8.000,00","u":15,"v":8000,"z":10},{"c":13,"d":"🍬ALKA MENTA X800G (400U)","i":340,"k":"Sin Clave","l":"img_340","p":"$8.000,00","u":15,"v":8000,"z":10},{"c":13,"d":"🍬ALKA STRONG X800G (400U)","i":199,"k":"Sin Clave","l":"img_199","p":"$8.000,00","u":15,"v":8000,"z":10},{"c":13,"d":"🍬CAR. ALKA CHERRY (12U)","i":110,"k":"Sin Clave","l":"img_110","p":"$3.100,00","u":15,"v":3100,"z":10},{"c":13,"d":"🍬CAR. ALKA MENTA (12U)","i":322,"k":"Sin Clave","l":"img_322","p":"$3.100,00","u":15,"v":3100,"z":10},{"c":13,"d":"🍬CAR. ALKA NEGRO(12U)","i":320,"k":"Sin Clave","l":"img_320","p":"$3.100,00","u":15,"v":3100,"z":10},{"c":13,"d":"🍬CAR. MENTA CHOCOLATE","i":377,"k":"Sin Clave","l":"null","p":"$6.900,00","u":15,"v":6900,"z":10},{"c":13,"d":"🍬CAR. MENTA MISKY X810G","i":225,"k":"Sin Clave","l":"img_225","p":"$6.900,00","u":15,"v":6900,"z":10},{"c":13,"d":"🍬CAR. MISKY MIEL X675G (135U APROX)","i":182,"k":"Sin Clave","l":"img_182","p":"$5.400,00","u":15,"v":5400,"z":10},{"c":13,"d":"🍬CAR. MISKY RELLENO FRUTA X800G","i":250,"k":"Sin Clave","l":"img_250","p":"$5.436,00","u":15,"v":5436,"z":10},{"c":13,"d":"🍬CAR. MISKY TOFFE","i":255,"k":"Sin Clave","l":"img_255","p":"$5.398,00","u":15,"v":5398,"z":10},{"c":13,"d":"🍬MAST. ANIMAL PICO DULCE X660G (143APROX)","i":368,"k":"Sin Clave","l":"img_368","p":"$4.896,00","u":15,"v":4896,"z":10},{"c":13,"d":"🍬MAST. BILLIKEN X600G (200U APROX)","i":187,"k":"Sin Clave","l":"img_187","p":"$3.400,00","u":15,"v":3400,"z":10},{"c":13,"d":"🍬MAST. BILLIKEN YOGURT X600G (200U APROX)","i":201,"k":"Sin Clave","l":"img_201","p":"$3.400,00","u":15,"v":3400,"z":10},{"c":13,"d":"🍬MAST. BULL DOG X700G (100U APROX)","i":202,"k":"Sin Clave","l":"img_202","p":"$4.476,00","u":15,"v":4476,"z":10},{"c":13,"d":"🍬MAST. DROPSY FRUTAL 700G(100U APROX.)","i":172,"k":"Sin Clave","l":"img_172","p":"$3.950,00","u":15,"v":3950,"z":10},{"c":13,"d":"🍬MAST. DROPSY YOGURT 700G(100U APROX.)","i":171,"k":"Sin Clave","l":"img_171","p":"$3.950,00","u":15,"v":3950,"z":10},{"c":13,"d":"🍬MAST. FLYNN PAFF  TUTII FRUTI 70U","i":188,"k":"Sin Clave","l":"img_188","p":"$4.450,00","u":15,"v":4450,"z":10},{"c":13,"d":"🍬MAST. MISKY 800G (242U APROX)","i":169,"k":"Sin Clave","l":"img_169","p":"$4.920,00","u":15,"v":4920,"z":10},{"c":13,"d":"🍬MAST. TAPONAZO FRUTAL 250G (100U APROX.)","i":137,"k":"Sin Clave","l":"img_137","p":"$1.460,00","u":15,"v":1460,"z":10},{"c":13,"d":"🍬MAST. TAPONAZO YOGURT 250G (100U APROX)","i":136,"k":"Sin Clave","l":"img_136","p":"$1.460,00","u":15,"v":1460,"z":10},{"c":13,"d":"🍬MENTHOPLUS CHERRY X12","i":249,"k":"Sin Clave","l":"img_249","p":"$5.185,00","u":15,"v":5185,"z":10},{"c":13,"d":"🍬MENTHOPLUS MIEL X12","i":372,"k":"Sin Clave","l":"null","p":"$5.185,00","u":15,"v":5185,"z":10},{"c":13,"d":"🍬MENTHOPLUS STRONG X12","i":239,"k":"Sin Clave","l":"img_239","p":"$5.185,00","u":15,"v":5185,"z":10},{"c":13,"d":"🍭CEBOLLITAS FRUTAL X40U","i":173,"k":"Sin Clave","l":"img_173","p":"$1.284,00","u":15,"v":1284,"z":10},{"c":13,"d":"🍭CHUPETIN FIERITA CON TATTU X50U","i":296,"k":"Sin Clave","l":"img_296","p":"$4.400,00","u":15,"v":4400,"z":10},{"c":13,"d":"🍭COSMO FRUTAL X40","i":231,"k":"Sin Clave","l":"img_231","p":"$3.360,00","u":15,"v":3360,"z":10},{"c":13,"d":"🍭EVOLUTION AZUL X24","i":79,"k":"Sin Clave","l":"img_79","p":"$4.560,00","u":15,"v":4560,"z":10},{"c":13,"d":"🍭EVOLUTION ROJO X24","i":80,"k":"Sin Clave","l":"img_80","p":"$4.560,00","u":15,"v":4560,"z":10},{"c":13,"d":"🍭PELOTITA FRUTAL X50","i":346,"k":"Sin Clave","l":"img_346","p":"$2.100,00","u":15,"v":2100,"z":10},{"c":13,"d":"🍭PICO DULCE X24","i":256,"k":"Sin Clave","l":"img_256","p":"$4.100,00","u":15,"v":4100,"z":10},{"c":13,"d":"🍭PICO DULCE X48","i":357,"k":"Sin Clave","l":"img_357","p":"$9.040,00","u":15,"v":9040,"z":10},{"c":13,"d":"🎈BELDENT FRUTA X20","i":279,"k":"Sin Clave","l":"img_279","p":"$12.900,00","u":15,"v":12900,"z":10},{"c":13,"d":"🎈BELDENT NEGRO X20","i":281,"k":"Sin Clave","l":"img_281","p":"$12.900,00","u":15,"v":12900,"z":10},{"c":13,"d":"🎈BELDENT TUTII X20","i":369,"k":"Sin Clave","l":"null","p":"$12.900,00","u":15,"v":12900,"z":10},{"c":13,"d":"🎈BELDENT VERDE X20","i":271,"k":"Sin Clave","l":"img_271","p":"$12.900,00","u":15,"v":12900,"z":10},{"c":13,"d":"🎈BUBALOO FRUTILLA X60U","i":328,"k":"Sin Clave","l":"img_328","p":"$5.550,00","u":15,"v":5550,"z":10},{"c":13,"d":"🎈BUBALOO MENTA X60U","i":70,"k":"Sin Clave","l":"img_70","p":"$5.550,00","u":15,"v":5550,"z":10},{"c":13,"d":"🎈FIERITA  MENTA X100U","i":176,"k":"Sin Clave","l":"img_176","p":"$2.350,00","u":15,"v":2350,"z":10},{"c":13,"d":"🎈FIERITA FRUTA X100U","i":259,"k":"Sin Clave","l":"img_259","p":"$2.350,00","u":15,"v":2350,"z":10},{"c":13,"d":"🎈FIERITA RECARGADO BANANA X50U","i":157,"k":"Sin Clave","l":"img_157","p":"$2.350,00","u":15,"v":2350,"z":10},{"c":13,"d":"🎈FIERITA RECARGADO FRUTILLAX50U","i":251,"k":"Sin Clave","l":"img_251","p":"$2.350,00","u":15,"v":2350,"z":10},{"c":13,"d":"🎈FIERITA RECARGADO MENTA X50U","i":128,"k":"Sin Clave","l":"img_128","p":"$2.350,00","u":15,"v":2350,"z":10},{"c":13,"d":"🎈FIERITA RECARGADO TUTTI X50U","i":127,"k":"Sin Clave","l":"img_127","p":"$2.350,00","u":15,"v":2350,"z":10},{"c":13,"d":"🎈TOPLINE MENTA X20U","i":149,"k":"7790580145002","l":"img_149","p":"$6.360,00","u":15,"v":6360,"z":10},{"c":13,"d":"🎈TOPLINE NEGRO X20U","i":260,"k":"7790580144708","l":"img_260","p":"$6.360,00","u":15,"v":6360,"z":10},{"c":13,"d":"🎈TOPLINE SANDIA X20U","i":150,"k":"Sin Clave","l":"img_150","p":"$6.360,00","u":15,"v":6360,"z":10},{"c":13,"d":"📊 MANTECOL X64G (📦 X9)","i":284,"k":"Sin Clave","l":"img_284","p":"$1.176,00","u":15,"v":1176,"z":10},{"c":13,"d":"📊MALVADISCO GONGYS X28G","i":220,"k":"Sin Clave","l":"img_220","p":"$286,00","u":15,"v":286,"z":10},{"c":13,"d":"📊TURRON MISKY X25G (📦 X50)","i":126,"k":"17790580401402","l":"img_126","p":"$166,00","u":15,"v":166,"z":10},{"c":13,"d":"🥮(➕)RASTA BLANCO (📦 X18)","i":342,"k":"Sin Clave","l":"img_342","p":"$950,00","u":16,"v":950,"z":10},{"c":13,"d":"🥮(➕)RASTA NEGRO (📦 X18)","i":341,"k":"Sin Clave","l":"img_341","p":"$950,00","u":16,"v":950,"z":10},{"c":13,"d":"🥮ALFA TUC X18 (BLANCO)","i":294,"k":"Sin Clave","l":"img_294","p":"$3.600,00","u":16,"v":3600,"z":10},{"c":13,"d":"🥮ALFA TUC X18 (NEGRO)","i":287,"k":"Sin Clave","l":"img_287","p":"$3.600,00","u":16,"v":3600,"z":10},{"c":13,"d":"🥮FANTOCHE BLANCO (📦 X24)","i":131,"k":"77991584","l":"img_131","p":"$600,00","u":15,"v":600,"z":10},{"c":13,"d":"🥮FANTOCHE NEGRO (📦 X24)","i":130,"k":"77991577","l":"img_130","p":"$600,00","u":15,"v":600,"z":10},{"c":13,"d":"🥮FULBITO CHOCOLATE","i":177,"k":"Sin Clave","l":"img_177","p":"$170,00","u":15,"v":170,"z":10},{"c":13,"d":"🥮FULBITO MANI (📦 X40)","i":132,"k":"Sin Clave","l":"img_132","p":"$170,00","u":15,"v":170,"z":10},{"c":13,"d":"🥮GENIO BLANCO X60G","i":143,"k":"17798094220960","l":"img_143","p":"$312,00","u":15,"v":312,"z":10},{"c":13,"d":"🥮GENIO NEGRO X60G","i":144,"k":"Sin Clave","l":"img_144","p":"$312,00","u":15,"v":312,"z":10},{"c":13,"d":"🥮MINI TORTA RAPSODIA","i":145,"k":"Sin Clave","l":"img_145","p":"$706,00","u":15,"v":706,"z":10},{"c":13,"d":"🥮TURIMAR BLANCO","i":147,"k":"Sin Clave","l":"img_147","p":"$300,00","u":15,"v":300,"z":10},{"c":13,"d":"🥮TURIMAR NEGRO","i":333,"k":"Sin Clave","l":"img_333","p":"$300,00","u":15,"v":300,"z":10},{"c":13,"d":"🧃(➕)JUGOS CLIGTH X20U (NARANJA\/DURAZNO)","i":69,"k":"Sin Clave","l":"img_69","p":"$6.670,00","u":15,"v":6670,"z":10},{"c":13,"d":"🧃(➕)JUGOS CLIGTH X20U(MANZANA)","i":68,"k":"Sin Clave","l":"img_68","p":"$6.670,00","u":15,"v":6670,"z":10},{"c":13,"d":"🧃PEPITO MANZANA","i":129,"k":"7792076400312","l":"img_129","p":"$336,00","u":15,"v":336,"z":10},{"c":13,"d":"🧃PEPITO MULTIFRUTA","i":334,"k":"Sin Clave","l":"img_334","p":"$336,00","u":15,"v":336,"z":10},{"c":13,"d":"🧃PEPITO NARANJA","i":153,"k":"7798036400330","l":"img_153","p":"$330,00","u":15,"v":330,"z":10},{"c":13,"d":"🧸GOMITA FANTASIA SURTIDAS","i":254,"k":"Sin Clave","l":"img_254","p":"$6.360,00","u":15,"v":6360,"z":10},{"c":13,"d":"🧸PIÑATA ANILLOS X700G (175U APROX )","i":123,"k":"Sin Clave","l":"img_123","p":"$4.100,00","u":15,"v":4100,"z":10},{"c":13,"d":"🧸PIÑATA BOTONES X700G (175U APROX.)","i":134,"k":"Sin Clave","l":"img_134","p":"$4.100,00","u":15,"v":4100,"z":10},{"c":13,"d":"🧸PIÑATA CHUPETES X700G","i":367,"k":"Sin Clave","l":"null","p":"$4.100,00","u":15,"v":4100,"z":10},{"c":13,"d":"🧸PIÑATA HUESOS X700G (175U APROX.)","i":124,"k":"Sin Clave","l":"img_124","p":"$4.100,00","u":15,"v":4100,"z":10},{"c":13,"d":"🧸PIÑATA SURTIDAS X700G (350 U APROX.)","i":125,"k":"Sin Clave","l":"img_125","p":"$4.100,00","u":15,"v":4100,"z":10},{"c":13,"d":"🧸YUMMY ANIMALITOSX12","i":331,"k":"Sin Clave","l":"img_331","p":"$4.320,00","u":15,"v":4320,"z":10},{"c":13,"d":"🧸YUMMY BOTELLITASX12","i":354,"k":"Sin Clave","l":"img_354","p":"$4.320,00","u":15,"v":4320,"z":10},{"c":13,"d":"🧸YUMMY DINOS X12","i":218,"k":"Sin Clave","l":"img_218","p":"$4.320,00","u":15,"v":4320,"z":10},{"c":13,"d":"🧸YUMMY MORITAS X12","i":219,"k":"Sin Clave","l":"img_219","p":"$4.320,00","u":15,"v":4320,"z":10},{"c":13,"d":"🧸YUMMY OSITOS X12","i":217,"k":"Sin Clave","l":"img_217","p":"$4.320,00","u":15,"v":4320,"z":10},{"c":12,"d":"💡FOCO CANDELA 12W (📦 X5)","i":314,"k":"7798347080061","l":"img_314","p":"$1.250,00","u":12,"v":1250,"z":10},{"c":12,"d":"💡FOCO CANDELA 9W (📦 X5)","i":290,"k":"7798347080047","l":"img_290","p":"$1.080,00","u":12,"v":1080,"z":10},{"c":12,"d":"🔋PILAS CANDELA AA X1","i":311,"k":"Sin Clave","l":"img_311","p":"$410,00","u":12,"v":410,"z":10},{"c":12,"d":"🔋PILAS CANDELA AAA X1","i":310,"k":"Sin Clave","l":"img_310","p":"$410,00","u":12,"v":410,"z":10},{"c":3,"d":"🧼PRESERVATIVOS PLAY BOY X3","i":168,"k":"7798194560136","l":"img_168","p":"$1.512,00","u":22,"v":1512,"z":10},{"c":3,"d":"🧼TRAPO DE PISO FIBRAN","i":253,"k":"7798136921858","l":"img_253","p":"$470,00","u":0,"v":470,"z":10},{"c":10,"d":"🛍️BOLSA CAMISETA 40X50 60U","i":88,"k":"BOLSA60X40","l":"img_88","p":"$800,00","u":4,"v":800,"z":10},{"c":10,"d":"🛍️BOLSA CONSORCIO ROLLO X10 (60X90)","i":252,"k":"0720665981444","l":"img_252","p":"$550,00","u":16,"v":550,"z":10},{"c":10,"d":"🛍️BOLSA RESIDUOS X30 (45X60)","i":370,"k":"Sin Clave","l":"null","p":"$560,00","u":0,"v":560,"z":10},{"c":21,"d":"🍪 FORMIS X72G CHOCOLATE","i":295,"k":"Sin Clave","l":"null","p":"$630,00","u":15,"v":630,"z":10},{"c":21,"d":"🍪KUKINAS BLACK X80G","i":216,"k":"Sin Clave","l":"img_216","p":"$540,00","u":15,"v":540,"z":10},{"c":21,"d":"🍪KUKINAS CON CHIPS X80G","i":214,"k":"Sin Clave","l":"img_214","p":"$540,00","u":15,"v":540,"z":10},{"c":21,"d":"🍪KUKINAS CON CONFITES X80G","i":215,"k":"Sin Clave","l":"img_215","p":"$540,00","u":15,"v":540,"z":10},{"c":21,"d":"🍪MINI TODDY X50G","i":358,"k":"Sin Clave","l":"img_358","p":"$630,00","u":15,"v":630,"z":10},{"c":21,"d":"🍪RUMBA","i":315,"k":"Sin Clave","l":"img_315","p":"$1.100,00","u":15,"v":1100,"z":10},{"c":21,"d":"🍪SALADIX TIRAX6 CALABRESA","i":211,"k":"Sin Clave","l":"img_211","p":"$3.680,00","u":15,"v":3680,"z":10},{"c":21,"d":"🍪SALADIX TIRAX6 DUO JAMON\/QUESO","i":212,"k":"Sin Clave","l":"img_212","p":"$3.520,00","u":19,"v":3520,"z":10},{"c":21,"d":"🍪SALADIX TIRAX6 JAMON (ARCOR)","i":210,"k":"Sin Clave","l":"img_210","p":"$3.680,00","u":15,"v":3680,"z":10},{"c":21,"d":"🍪SALADIX TIRAX6 PIZZA","i":209,"k":"Sin Clave","l":"img_209","p":"$3.680,00","u":15,"v":3680,"z":10},{"c":21,"d":"🍪SALADIX X100G CALAMBRA","i":160,"k":"Sin Clave","l":"img_160","p":"$770,00","u":19,"v":770,"z":10},{"c":21,"d":"🍪SALADIX X100G JAMON","i":159,"k":"Sin Clave","l":"img_159","p":"$770,00","u":19,"v":770,"z":10},{"c":21,"d":"🍪SALADIX X100G PIZZA","i":161,"k":"Sin Clave","l":"img_161","p":"$750,00","u":19,"v":750,"z":10},{"c":21,"d":"🍫BOMBON SMILE GAM X400G (50U)","i":352,"k":"Sin Clave","l":"img_352","p":"$4.100,00","u":15,"v":4100,"z":10},{"c":21,"d":"🍫CHOCOLATE PARA TAZA ALTEZA","i":361,"k":"Sin Clave","l":"img_361","p":"$1.260,00","u":15,"v":1260,"z":10},{"c":21,"d":"🍫CHOCOLATIN MISKY BLANCO X20U","i":232,"k":"Sin Clave","l":"img_232","p":"$4.100,00","u":15,"v":4100,"z":10},{"c":21,"d":"🍫CHOCOLATIN MISKY NEGRO X20U","i":233,"k":"Sin Clave","l":"img_233","p":"$4.100,00","u":15,"v":4100,"z":10},{"c":21,"d":"🍫COFLER BLOCK 110G (ARCOR)","i":115,"k":"Sin Clave","l":"img_115","p":"$2.440,00","u":19,"v":2440,"z":10},{"c":21,"d":"🍫COFLER BLOCK 38G (ARCOR)","i":114,"k":"Sin Clave","l":"img_114","p":"$720,00","u":15,"v":720,"z":10},{"c":21,"d":"🍫DAQUI X40G","i":262,"k":"Sin Clave","l":"img_262","p":"$390,00","u":15,"v":390,"z":10},{"c":21,"d":"🍫FULL MANI X35G","i":292,"k":"Sin Clave","l":"img_292","p":"$852,00","u":15,"v":852,"z":10},{"c":21,"d":"🍫TOKKE DDL.  X72G","i":97,"k":"Sin Clave","l":"img_97","p":"$1.980,00","u":15,"v":1980,"z":10},{"c":21,"d":"🍬PALITOS DE LA SELVA X660G (146APROX)","i":362,"k":"Sin Clave","l":"img_362","p":"$6.350,00","u":15,"v":6350,"z":10},{"c":21,"d":"🍭BOLA LOCA MAXX X24 CON CHICLE (CEREZA Y TUTTI)","i":289,"k":"Sin Clave","l":"null","p":"$2.790,00","u":15,"v":2790,"z":10},{"c":21,"d":"🍭BOLA LOCA X24 CON CHICLE","i":235,"k":"Sin Clave","l":"img_235","p":"$2.450,00","u":15,"v":2450,"z":10},{"c":21,"d":"🍭CHUPETIN MARENGO  FRUTAL X40","i":264,"k":"Sin Clave","l":"img_264","p":"$1.600,00","u":15,"v":1600,"z":10},{"c":21,"d":"💊 TEST DE EMBARAZO","i":283,"k":"Sin Clave","l":"null","p":"$2.500,00","u":0,"v":2500,"z":10},{"c":21,"d":"💊BAYASPIRINA C (LIMON)","i":66,"k":"7793640002680","l":"img_66","p":"$846,00","u":14,"v":846,"z":10},{"c":21,"d":"💊CURINFLAN X15","i":40,"k":"Sin Clave","l":"img_40","p":"$1.800,00","u":14,"v":1800,"z":10},{"c":21,"d":"💊IBUPROFENO JARABE 2%","i":277,"k":"Sin Clave","l":"null","p":"$1.230,00","u":14,"v":1230,"z":10},{"c":21,"d":"💊JERINGA 💉 5ML CON AGUJA","i":174,"k":"Sin Clave","l":"null","p":"$180,00","u":14,"v":180,"z":10},{"c":21,"d":"💊TE VICK X1 SOBRE","i":165,"k":"Sin Clave","l":"img_165","p":"$1.870,00","u":14,"v":1870,"z":10},{"c":21,"d":"🔋 PILAS EUROENERGY AAA X1","i":118,"k":"7798347085493","l":"img_118","p":"$510,00","u":11,"v":510,"z":10},{"c":21,"d":"🔗GOTITA 2ML (📦X6)","i":348,"k":"Sin Clave","l":"img_348","p":"$1.200,00","u":0,"v":1200,"z":10},{"c":21,"d":"🔗POXIRAM 23GR","i":349,"k":"Sin Clave","l":"img_349","p":"$2.000,00","u":0,"v":2000,"z":10},{"c":21,"d":"🗞️CELULOSA 3 RAYOS X50U","i":120,"k":"7798020250101","l":"img_120","p":"$990,00","u":11,"v":990,"z":10},{"c":21,"d":"🗞️CELULOSA ROKX50 (NUEVO TAMAÑO MAS GRANDES)","i":355,"k":"Sin Clave","l":"null","p":"$850,00","u":12,"v":850,"z":10},{"c":21,"d":"🗞️CELULOSA ROKX50 (📦 X20)","i":21,"k":"724751011787","l":"img_21","p":"$1.020,00","u":12,"v":1020,"z":10},{"c":21,"d":"🗞️CELULOSA SATIVA X40U","i":119,"k":"Sin Clave","l":"img_119","p":"$800,00","u":11,"v":800,"z":10},{"c":21,"d":"🗞️CELULOSA ZEUS GRANDEX50","i":374,"k":"Sin Clave","l":"null","p":"$840,00","u":22,"v":840,"z":10},{"c":21,"d":"🗞️PAPELILLO PIER X50LILLOS","i":23,"k":"Sin Clave","l":"img_23","p":"$430,00","u":12,"v":430,"z":10},{"c":21,"d":"🚬 CIGARRILLOS 51","i":261,"k":"Sin Clave","l":"img_261","p":"$7.000,00","u":12,"v":7000,"z":10},{"c":21,"d":"🚬(❌ SINSTOCK)CORVAIR BOX 20","i":268,"k":"Sin Clave","l":"img_268","p":"$6.000,00","u":23,"v":6000,"z":10},{"c":21,"d":"🚬EURO BOX20","i":104,"k":"Sin Clave","l":"img_104","p":"$7.800,00","u":23,"v":7800,"z":10},{"c":21,"d":"🛍️FOLEX","i":190,"k":"Sin Clave","l":"img_190","p":"$4.500,00","u":4,"v":4500,"z":10},{"c":21,"d":"🛒ACEITE BONOLEO GIRASOL X900","i":286,"k":"Sin Clave","l":"img_286","p":"$1.440,00","u":12,"v":1440,"z":10},{"c":21,"d":"🛒EDULCORANTE SI-DIET 200ML","i":227,"k":"Sin Clave","l":"img_227","p":"$1.218,00","u":15,"v":1218,"z":10},{"c":21,"d":"🛒EDULCORANTE SI-DIET 250ML","i":373,"k":"Sin Clave","l":"null","p":"$1.430,00","u":15,"v":1430,"z":10},{"c":21,"d":"🛒EDULCORANTE SI-DIET X500ML","i":226,"k":"Sin Clave","l":"img_226","p":"$2.278,00","u":15,"v":2278,"z":10},{"c":21,"d":"🥮TOFY BLANCO X73G","i":288,"k":"Sin Clave","l":"img_288","p":"$830,00","u":15,"v":830,"z":10},{"c":21,"d":"🧃PEPITO DURAZNO","i":196,"k":"Sin Clave","l":"img_196","p":"$336,00","u":15,"v":336,"z":10},{"c":21,"d":"🧼DENTRIFICO COLGATE TRIPLE ACCION X180G","i":158,"k":"7891024132371","l":"img_158","p":"$3.000,00","u":22,"v":3000,"z":10},{"c":21,"d":"🧼PRESTOBARBA 2FILOS(12)","i":99,"k":"Sin Clave","l":"img_99","p":"$1.000,00","u":22,"v":1000,"z":10},{"c":21,"d":"🧼PRESTOBARBA 3FILOS","i":103,"k":"Sin Clave","l":"img_103","p":"$1.100,00","u":22,"v":1100,"z":10},{"c":21,"d":"🧼REPELENTE EN AEROSOL 911 X150G","i":319,"k":"768641032537","l":"img_319","p":"$2.520,00","u":15,"v":2520,"z":10},{"c":2,"d":"TV BOX USADO","i":8,"k":"Sin Clave","l":"null","p":"$43.000,00","u":22,"v":43000,"z":10},{"c":2,"d":"🤖TV BOX 4RAM\/8INTERNA","i":14,"k":"Sin Clave","l":"null","p":"$63.000,00","u":0,"v":63000,"z":10},{"c":2,"d":"🤖TV BOX TOMATE (13 4G\/16G ROM)","i":191,"k":"Sin Clave","l":"img_191","p":"$60.000,00","u":0,"v":60000,"z":10},{"c":2,"d":"🤖VAPER GEETBAR (15.000 PUFF)","i":305,"k":"Sin Clave","l":"img_305","p":"$24.000,00","u":11,"v":24000,"z":10}],"ctg":[{"i":1,"n":"00.🚬 CIGARRILLOS"},{"i":6,"n":"01.🔥LILLOS Y ENCEN."},{"i":7,"n":"03.💊 MEDICAMENTOS"},{"i":13,"n":"05.🍬 GOLOSINAS🍬"},{"i":12,"n":"16.🔌 PILAS Y FOCOS"},{"i":3,"n":"17.🧼 LIMPIEZA"},{"i":10,"n":"18.🛍️ DESCARTABLES"},{"i":21,"n":"❌SIN STOCK"},{"i":2,"n":"🤖TECNOLOGIA"}],"und":[{"i":0,"n":"Sin Unidad"},{"i":16,"n":"6️⃣DISTRI ALEXANDER"},{"i":19,"n":"4️⃣ARCOR BRUNO 🍬"},{"i":4,"n":"🛍️ ENVASES MB"},{"i":22,"n":"🚚OTRO PROVEEDOR"},{"i":23,"n":"1️⃣NAHUEL DISTRI"},{"i":11,"n":"5️⃣JM DISTRI"},{"i":12,"n":"2️⃣DANIEL DISTRI"},{"i":14,"n":"3️⃣FARM. AYACUCHO"},{"i":15,"n":"1️⃣ TENTACIÓN 🍬"}],"ngc":"🚚JMS DISTRIBUCIONES","tel2":"543816163841","cor2":"","dir2":"","alf":"Alfabeto","myp":"Mayor Precio","mnp":"Menor Precio","ctgs":"Categoría","orp":"Ordenar Por","bsc":"Buscar","crt":true,"nam":"Nombre","sct":"Comprar Ahora","ernw":"Error al conectarse al servidor, compruebe su conexión a internet e intente nuevamente.","img":true,"uni":true,"cla":true,"wha":true,"clo":"Cerrar","nxt":"Siguiente","prv":"Anterior","sin":"Sin Información","clt":"w3-red","tmp":1754938640849,"lg":"logo"} /*#d4t4#*/;
+		</script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
