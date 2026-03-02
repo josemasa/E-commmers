@@ -195,7 +195,7 @@ function mostrarProductos(lista) {
   lista.forEach((p, index) => {
     const div = document.createElement('div');
     div.className = 'producto';
-    const nombreArchivo = p.clave + '.jpg';
+    const nombreArchivo = p.nombre.trim() + '.jpg';
     div.innerHTML = `
       <img src="img/${nombreArchivo}" alt="${p.nombre}" 
            onclick="verImagen('img/${nombreArchivo}')"
